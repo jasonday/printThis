@@ -2,7 +2,7 @@
 // Eros Fratini - eros@recoding.it
 // jqprint 0.4
 //
-// - 11/05/2012 - improved implementation of css file inclusion (mark@permanenttourist.ch)
+// - 11/05/2012 - improved implementation of css file inclusion (permanent.tourist@gmail.com)
 // - 19/06/2009 - some new implementations, added Opera support
 // - 11/05/2009 - first sketch
 //
