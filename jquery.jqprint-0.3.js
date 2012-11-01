@@ -1,7 +1,7 @@
 ﻿// -----------------------------------------------------------------------
 // Eros Fratini - eros@recoding.it
 // jqprint 0.4
-//
+// 
 // - 11/05/2012 - improved implementation of css file inclusion (by https://github.com/permanenttourist)
 // - 19/06/2009 - some new implementations, added Opera support
 // - 11/05/2009 - first sketch
@@ -20,7 +20,7 @@
 
         var $element = (this instanceof jQuery) ? this : $(this);
 
-        if (opt.operaSupport && $.browser.opera)
+        if ($.browser.opera)
         {
             var tab = window.open("","jqPrint-preview");
             tab.document.open();
@@ -60,8 +60,7 @@
     $.fn.jqprint.defaults = {
 		debug: false,
 		importCSS: true,
-		printContainer: true,
-		operaSupport: true
+		printContainer: true
 	};
 
     // Thanks to 9__, found at http://users.livejournal.com/9__/380664.html
