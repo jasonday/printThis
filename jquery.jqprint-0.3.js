@@ -1,28 +1,21 @@
-﻿// -----------------------------------------------------------------------
-// Eros Fratini - eros@recoding.it
-// jqprint 0.4
-// 
-// - 11/05/2012 - improved implementation of css file inclusion (by https://github.com/permanenttourist)
-// - 19/06/2009 - some new implementations, added Opera support
-// - 11/05/2009 - first sketch
+// -----------------------------------------------------------------------
+// Print This
 //
-// Printing plug-in for jQuery, evolution of jPrintArea: http://plugins.jquery.com/project/jPrintArea
-// requires jQuery 1.3.x
-//
-// Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+// Based on jPrintArea: http://plugins.jquery.com/project/jPrintArea
+// and jqprint: https://github.com/tanathos/jquery.jqprint
 //------------------------------------------------------------------------
 
 (function($) {
     var opt;
 
-    $.fn.jqprint = function (options) {
-        opt = $.extend({}, $.fn.jqprint.defaults, options);
+    $.fn.printThis = function (options) {
+        opt = $.extend({}, $.fn.printThis.defaults, options);
 
         var $element = (this instanceof jQuery) ? this : $(this);
 
         if ($.browser.opera)
         {
-            var tab = window.open("","jqPrint-preview");
+            var tab = window.open("","Print Preview");
             tab.document.open();
 
             var doc = tab.document;
@@ -57,13 +50,13 @@
         setTimeout( function() { (opt.operaSupport && $.browser.opera ? tab : $iframe[0].contentWindow).print(); if (tab) { tab.close(); } }, 1000);
     }
 
-    $.fn.jqprint.defaults = {
+    $.fn.printThis.defaults = {
 		debug: false,
 		importCSS: true,
 		printContainer: true
 	};
 
-    // Thanks to 9__, found at http://users.livejournal.com/9__/380664.html
+    
     jQuery.fn.outer = function() {
       return $($('<div></div>').html(this.clone())).html();
     }
