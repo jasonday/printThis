@@ -1,5 +1,9 @@
 Jason Day
-printThis 1.0
+printThis 1.1
+
+11/11/2012    reworked plugin to use a jQuery object
+              removed document.write
+              added setTimeout (waits for iframe to full render before action)
 
 11/07/2012    added support for loading css files
               removed Opera option, left in by default
