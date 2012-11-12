@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// printThis v1.0
+// printThis v1.1
 // Printing plug-in for jQuery
 //
 // Resources (based on) :
@@ -15,7 +15,6 @@
 //
 //------------------------------------------------------------------------
 
-
 (function($) {
     var opt;
 
@@ -23,7 +22,8 @@
         opt = $.extend({}, $.fn.printThis.defaults, options);
 
         var $element = (this instanceof jQuery) ? this : $(this);
-
+	
+	// if Opera, open a new tab
         if ($.browser.opera)
         {
             var tab = window.open("","Print Preview");
@@ -31,51 +31,60 @@
 
             var doc = tab.document;
         }
+	// add dynamic iframe to DOM
         else
         {
 	    var strFrameName = ("printThis-" + (new Date()).getTime());
 	    
-            var $iframe = $("<iframe id=" + strFrameName +"/>");
+            var $iframe = $("<iframe id='" + strFrameName +"' src='about:blank'/>");
 
             if (!opt.debug) { $iframe.css({ position: "absolute", width: "0px", height: "0px", left: "-600px", top: "-600px" }); }
 
             $iframe.appendTo("body");
-            var doc = $iframe[0].contentWindow.document;
-        }
-
-        if (opt.importCSS)
-        {
-			$("link[rel=stylesheet]").each(function(){
-           		var href = $(this).attr('href');
-           		if(href){
-					var media = $(this).attr('media') || 'all';
-					doc.write("<link type='text/css' rel='stylesheet' href='" + href + "' media='"+media+"'>");
-				}
-            });
-        }
-	
-	if (opt.loadCSS)
-	{
-	    doc.write("<link type='text/css' rel='stylesheet' href='" + opt.loadCSS + "'>");
 	    
-	}
-
-        if (opt.printContainer) { doc.write($element.outer()); }
-        else { $element.each( function() { doc.write($(this).html()); }); }
-
-        doc.close();
-
-        ($.browser.opera ? tab : $iframe[0].contentWindow).focus();
-        setTimeout( function() { ($.browser.opera ? tab : $iframe[0].contentWindow).print(); if (tab) { tab.close(); } }, 1000);
-	
-	//removed iframe after 60 seconds
-	setTimeout(
-	    function(){
-	    $iframe.remove();
-	    },
-	    (60 * 1000)
-	    );
+            var $doc = $("#" + strFrameName).contents();
+        }
+	// allow iframe to fully render before action
+	setTimeout ( function () {
+	    
+	    // import page css
+	    if (opt.importCSS)
+	    {
+			    $("link[rel=stylesheet]").each(function(){
+			    var href = $(this).attr('href');
+			    if(href){
+					    var media = $(this).attr('media') || 'all';
+					    $doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + href + "' media='"+media+"'>");
+				    }
+		});
+	    }
+	    
+	    // add another stylesheet
+	    if (opt.loadCSS)
+	    {
+		$doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + opt.loadCSS + "'>");
+		
+	    }
+	    
+	    //grab outer container
+	    if (opt.printContainer) { $doc.find("body").append($element.outer()); }
+	    else { $element.each( function() { $doc.find("body").append($(this).html()); }); }
+    
+	    //$doc.close();
+	    // print
+	    ($.browser.opera ? tab : $iframe[0].contentWindow).focus();
+	    setTimeout( function() { ($.browser.opera ? tab : $iframe[0].contentWindow).print(); if (tab) { tab.close(); } }, 1000);
+	    
+	    //removed iframe after 60 seconds
+	    setTimeout(
+		function(){
+		$iframe.remove();
+		},
+		(60 * 1000)
+		);
+	}, 333 );
     }
+    
 
     $.fn.printThis.defaults = {
 		debug: false,
