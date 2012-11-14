@@ -13,6 +13,17 @@
 //
 // (c) Jason Day 2012
 //
+// Usage:
+//
+// $("#mySelector").printThis({
+//		debug: false, //show the iframe for debugging
+//		importCSS: true, // import page CSS
+//		printContainer: true, // grab outer container as well as the contents of the selector
+//		loadCSS: "path/to/my.css" //path to additional css file
+//	});
+//
+// Notes:
+// 	- the loadCSS option does not need @media print
 //------------------------------------------------------------------------
 
 (function($) {
@@ -87,10 +98,10 @@
     
 
     $.fn.printThis.defaults = {
-		debug: false,
-		importCSS: true,
-		printContainer: true,
-		loadCSS: ""
+		debug: false, //show the iframe for debugging
+		importCSS: true, // import page CSS
+		printContainer: true, // grab outer container as well as the contents of the selector
+		loadCSS: "" //path to additional css file
 	};
 
     
