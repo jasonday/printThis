@@ -1,6 +1,9 @@
 Jason Day
 printThis 1.1
 
+11/23/2012    fixed showstopper with Firefox:
+              - moved variable $doc to within setTimeout function
+
 11/11/2012    reworked plugin to use a jQuery object
               removed document.write
               added setTimeout (waits for iframe to full render before action)
