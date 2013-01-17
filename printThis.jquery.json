@@ -3,10 +3,9 @@
   "title": "jQuery printThis",
   "description": "Printing plug-in for jQuery. Print specific page elements, add print options, maintain or add new styling using jQuery.",
   "keywords": [
-    "color",
-    "animation"
+    "print",
   ],
-  "version": "1.01",
+  "version": "1.1",
   "author": {
     "name": "Jason Day",
     "url": "https://github.com/jasonday/jquery.printThis"
