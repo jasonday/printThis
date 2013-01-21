@@ -1,7 +1,7 @@
 {
-  "name": "printThis",
+  "name": "jQuery.printThis",
   "version": "0.1.1",
-  "title": "jQuery printThis",
+  "title": "printThis",
   "description": "Printing plug-in for jQuery. Print specific page elements, add print options, maintain or add new styling using jQuery.",
   "author": {
     "name": "Jason Day",
