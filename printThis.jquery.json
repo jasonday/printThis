@@ -1,33 +1,33 @@
 {
   "name": "printThis",
+  "version": "0.1.1",
   "title": "jQuery printThis",
   "description": "Printing plug-in for jQuery. Print specific page elements, add print options, maintain or add new styling using jQuery.",
-  "keywords": [
-    "print",
-  ],
-  "version": "1.1",
   "author": {
     "name": "Jason Day",
-    "url": "https://github.com/jasonday/jquery.printThis"
+    "email": "movemaine@gmail.com",
+    "url": "https://github.com/jasonday"
   },
+  "licenses": [
+    {
+      "type": "MIT & GPL",
+      "url": "https://github.com/jasonday/jquery.printThis"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.6"
+  },
+  "keywords": ["print", "printing"],
+  "homepage": "https://github.com/jasonday/jquery.printThis",
+  "docs": "https://github.com/jasonday/jquery.printThis",
+  "demo": "https://github.com/jasonday/jquery.printThis",
+  "bugs": "https://github.com/jasonday/jquery.printThis/issues",
+  "download": "https://github.com/jasonday/jquery.printThis",
   "maintainers": [
     {
       "name": "Jason Day",
       "email": "movemaine@gmail.com",
-      "url": "http://www.rathernerdy.com"
+      "url": "https://github.com/jasonday"
     }
-  ],
-  "licenses": [
-    {
-      "type": "MIT and GPL",
-      "url": "https://github.com/jasonday/jquery.printThis"
-    }
-  ],
-  "bugs": "https://github.com/jasonday/jquery.printThis/issues",
-  "homepage": "https://github.com/jasonday/jquery.printThis",
-  "docs": "https://github.com/jasonday/jquery.printThis",
-  "download": "https://github.com/jasonday/jquery.printThis",
-  "dependencies": {
-    "jquery": ">=1.6"
-  }
+  ]
 }
