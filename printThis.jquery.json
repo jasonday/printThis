@@ -1,6 +1,6 @@
 {
   "name": "printThis",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "title": "printThis",
   "description": "Printing plug-in for jQuery. Print specific page elements, add print options, maintain or add new styling using jQuery.",
   "author": {
@@ -10,7 +10,7 @@
   },
   "licenses": [
     {
-      "type": "MIT & GPL",
+      "type": "GPL",
       "url": "https://github.com/jasonday/printThis"
     }
   ],
