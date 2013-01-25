@@ -87,8 +87,10 @@
         }
         
         //add title of the page
+        if (opt.titlePage)
+        {
         $doc.find("head").append('<title>'+opt.titlePage+'</title>');
-         
+        } 
         //grab outer container
         if (opt.printContainer) { $doc.find("body").append($element.outer()); }
         else { $element.each( function() { $doc.find("body").append($(this).html()); }); }
