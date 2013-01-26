@@ -85,7 +85,12 @@
         $doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + opt.loadCSS + "'>");
          
         }
-         
+        
+        //add title of the page
+        if (opt.titlePage)
+        {
+        $doc.find("head").append('<title>'+opt.titlePage+'</title>');
+        } 
         //grab outer container
         if (opt.printContainer) { $doc.find("body").append($element.outer()); }
         else { $element.each( function() { $doc.find("body").append($(this).html()); }); }
@@ -110,7 +115,8 @@
         debug: false, //show the iframe for debugging
         importCSS: true, // import page CSS
         printContainer: true, // grab outer container as well as the contents of the selector
-        loadCSS: "" //path to additional css file
+        loadCSS: "", //path to additional css file
+        titlePage: "" //add title to print page
     };
  
      
