@@ -23,7 +23,7 @@
 //  });
 //
 // Notes:
-//  - the loadCSS option does not need @media print, it will load any css into the iframe only further adjusting layouts. It also works with @media print as well.
+//  - the loadCSS will load additional css (with or without @media print) into the iframe, adjusting layout
 //------------------------------------------------------------------------
  
 (function ($) {
