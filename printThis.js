@@ -16,10 +16,11 @@
 // Usage:
 //
 // $("#mySelector").printThis({
-//      debug: false, //show the iframe for debugging
-//      importCSS: true, // import page CSS
-//      printContainer: true, // grab outer container as well as the contents of the selector
-//      loadCSS: "path/to/my.css" //path to additional css file
+//      debug: false,             // show the iframe for debugging
+//      importCSS: true,          // import page CSS
+//      printContainer: true,     // grab outer container as well as the contents of the selector
+//      loadCSS: "path/to/my.css" // path to additional css file
+//      pageTitle: ""             // add title to print page
 //  });
 //
 // Notes:
