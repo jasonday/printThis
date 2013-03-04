@@ -23,7 +23,7 @@
 //  });
 //
 // Notes:
-//  - the loadCSS option does not need @media print
+//  - the loadCSS option does not need @media print, it will load any css into the iframe only further adjusting layouts. It also works with @media print as well.
 //------------------------------------------------------------------------
  
 (function ($) {
@@ -78,7 +78,7 @@
                 }
             });
             
-            //add title of the page
+            //add title to iframe
             if (opt.pageTitle) $doc.find("head").append("<title>" + opt.pageTitle + "</title>");
             
             // import additional stylesheet
