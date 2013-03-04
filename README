@@ -1,6 +1,11 @@
 Jason Day
 printThis 1.1
 
+3/04/2013     fixed showstopper with IE and document.domain
+              - some major rework
+              added "pageTitle" option
+              some minor rework of other areas
+
 11/23/2012    fixed showstopper with Firefox:
               - moved variable $doc to within setTimeout function
 
