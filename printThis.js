@@ -11,7 +11,7 @@
 //              http://www.opensource.org/licenses/mit-license.php
 //              http://www.gnu.org/licenses/gpl.html
 //
-// (c) Jason Day 2012
+// (c) Jason Day 2013
 //
 // Usage:
 //
