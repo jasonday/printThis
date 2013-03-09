@@ -16,11 +16,12 @@
 // Usage:
 //
 // $("#mySelector").printThis({
-//      debug: false,             // show the iframe for debugging
-//      importCSS: true,          // import page CSS
-//      printContainer: true,     // grab outer container as well as the contents of the selector
-//      loadCSS: "path/to/my.css" // path to additional css file
-//      pageTitle: ""             // add title to print page
+//      debug: false,              // show the iframe for debugging
+//      importCSS: true,           // import page CSS
+//      printContainer: true,      // grab outer container as well as the contents of the selector
+//      loadCSS: "path/to/my.css", // path to additional css file
+//      pageTitle: "",             // add title to print page
+//      removeInline: false        // remove all inline styles from print elements
 //  });
 //
 // Notes:
@@ -79,7 +80,7 @@
                 }
             });
             
-            //add title to iframe
+            //add title of the page
             if (opt.pageTitle) $doc.find("head").append("<title>" + opt.pageTitle + "</title>");
             
             // import additional stylesheet
@@ -92,6 +93,16 @@
             else $element.each(function () {
                 $doc.find("body").append($(this).html())
             });
+            
+            // remove inline styles
+            if (opt.removeInline) {
+                // $.removeAttr available jQuery 1.7+
+                if ($.isFunction($.removeAttr)) {
+                    $doc.find("body *").removeAttr("style");
+                } else {
+                    $doc.find("body").attr("style", "");
+                }
+            } 
             
             if($iframe.hasClass("MSIE")){
                 // check if the iframe was created with the ugly hack
@@ -124,7 +135,8 @@
         importCSS: true,        // import parent page css
         printContainer: true,   // print outer container/$.selector
         loadCSS: "",            // load an additional css file
-        pageTitle: ""           // add title to print page
+        pageTitle: "",          // add title to print page
+        removeInline: false     // remove all inline styles
     };
     
     // $.selector container
