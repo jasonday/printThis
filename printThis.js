@@ -100,7 +100,7 @@
                 if ($.isFunction($.removeAttr)) {
                     $doc.find("body *").removeAttr("style");
                 } else {
-                    $doc.find("body").attr("style", "");
+                    $doc.find("body *").attr("style", "");
                 }
             } 
             
