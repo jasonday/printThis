@@ -113,8 +113,11 @@
                 }, 500 );
             } else {
                 // proper method
-                $iframe[0].contentWindow.focus();
-                $iframe[0].contentWindow.print();  
+                setTimeout(function () {
+                // firefox needs a moment
+                   $iframe[0].contentWindow.focus();
+                   $iframe[0].contentWindow.print(); 
+                }, 333 );
             }
             
              //remove iframe after print
