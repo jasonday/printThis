@@ -1,33 +1,3 @@
-// -----------------------------------------------------------------------
-// printThis v1.1
-// Printing plug-in for jQuery
-//
-// Resources (based on) :
-//              jPrintArea: http://plugins.jquery.com/project/jPrintArea
-//              jqPrint: https://github.com/permanenttourist/jquery.jqprint
-//              Ben Nadal: http://www.bennadel.com/blog/1591-Ask-Ben-Print-Part-Of-A-Web-Page-With-jQuery.htm
-//
-// Dual licensed under the MIT and GPL licenses:
-//              http://www.opensource.org/licenses/mit-license.php
-//              http://www.gnu.org/licenses/gpl.html
-//
-// (c) Jason Day 2013
-//
-// Usage:
-//
-// $("#mySelector").printThis({
-//      debug: false,              // show the iframe for debugging
-//      importCSS: true,           // import page CSS
-//      printContainer: true,      // grab outer container as well as the contents of the selector
-//      loadCSS: "path/to/my.css", // path to additional css file
-//      pageTitle: "",             // add title to print page
-//      removeInline: false        // remove all inline styles from print elements
-//  });
-//
-// Notes:
-//  - the loadCSS will load additional css (with or without @media print) into the iframe, adjusting layout
-//------------------------------------------------------------------------
- 
 (function ($) {
     var opt;
     $.fn.printThis = function (options) {
@@ -104,30 +74,27 @@
                 }
             } 
             
-            if($iframe.hasClass("MSIE")){
-                // check if the iframe was created with the ugly hack
-                // and perform another ugly hack out of neccessity
-                window.frames["printIframe"].focus();
-                setTimeout(function () {
-                   $doc.find("head").append("<script>  window.print(); </script>");
-                }, 500 );
-            } else {
-                // proper method
-                setTimeout(function () {
-                // firefox needs a moment
-                   $iframe[0].contentWindow.focus();
-                   $iframe[0].contentWindow.print(); 
-                }, 333 );
-            }
-            
-             //remove iframe after print
-            if (!opt.debug) {
-                setTimeout(function () {
-                    $iframe.remove();
-                }, 1000);
-            }
-            
-            
+            setTimeout(function () {
+                if($iframe.hasClass("MSIE")){
+                    // check if the iframe was created with the ugly hack
+                    // and perform another ugly hack out of neccessity
+                    window.frames["printIframe"].focus();
+                    $doc.find("head").append("<script>  window.print(); </script>");
+                } else {
+                    // proper method
+                    $iframe[0].contentWindow.focus();
+                    $iframe[0].contentWindow.print();  
+                }
+                
+                 //remove iframe after print
+                if (!opt.debug) {
+                    setTimeout(function () {
+                        $iframe.remove();
+                    }, 1000);
+                }
+                
+            }, 333);
+             
         }, 333 );
         
     };
