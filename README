@@ -1,5 +1,5 @@
 Jason Day
-printThis 1.1
+printThis 1.2
 
 3/08/2013     added option to remove inline styles from print elements
 
@@ -31,6 +31,6 @@ Dual licensed under the MIT and GPL licenses:
               http://www.opensource.org/licenses/mit-license.php
               http://www.gnu.org/licenses/gpl.html
 
-(c) Jason Day 2012
+(c) Jason Day 2012-2013
 
 
