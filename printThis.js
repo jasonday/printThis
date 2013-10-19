@@ -1,7 +1,8 @@
 /*
-* printThis v1.2
+* printThis v1.3
 * @desc Printing plug-in for jQuery
 * @author Jason Day
+* @modified Shannon Vance
 * 
 * Resources (based on) :
 *              jPrintArea: http://plugins.jquery.com/project/jPrintArea
@@ -22,7 +23,9 @@
 *      printContainer: true,      * grab outer container as well as the contents of the selector
 *      loadCSS: "path/to/my.css", * path to additional css file
 *      pageTitle: "",             * add title to print page
-*      removeInline: false        * remove all inline styles from print elements
+*      removeInline: false,       * remove all inline styles from print elements
+*      printDelay: 333,           * variable print delay S. Vance
+*      header: null               * prefix to html
 *  });
 *
 * Notes:
@@ -86,12 +89,15 @@
             // import additional stylesheet
             if (opt.loadCSS) $doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + opt.loadCSS + "'>");
             
+            // print header
+            if (opt.header) $doc.find("body").append(opt.header);
+
             // grab $.selector as container
             if (opt.printContainer) $doc.find("body").append($element.outer());
-            
+                
             // otherwise just print interior elements of container
             else $element.each(function () {
-                $doc.find("body").append($(this).html())
+                $doc.find("body").append($(this).html());
             });
             
             // remove inline styles
@@ -116,6 +122,7 @@
                     $iframe[0].contentWindow.print();  
                 }
                 
+                 $element.trigger( "done");
                  //remove iframe after print
                 if (!opt.debug) {
                     setTimeout(function () {
@@ -123,7 +130,7 @@
                     }, 1000);
                 }
                 
-            }, 333);
+            }, opt.printDelay);
              
         }, 333 );
         
@@ -136,7 +143,9 @@
         printContainer: true,   // print outer container/$.selector
         loadCSS: "",            // load an additional css file
         pageTitle: "",          // add title to print page
-        removeInline: false     // remove all inline styles
+        removeInline: false,    // remove all inline styles
+        printDelay: 333,        // variable print delay S. Vance
+        header: null            // prefix to html
     };
     
     // $.selector container
