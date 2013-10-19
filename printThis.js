@@ -2,7 +2,6 @@
 * printThis v1.3
 * @desc Printing plug-in for jQuery
 * @author Jason Day
-* @modified Shannon Vance
 * 
 * Resources (based on) :
 *              jPrintArea: http://plugins.jquery.com/project/jPrintArea
