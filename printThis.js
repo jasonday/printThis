@@ -23,7 +23,7 @@
 *      loadCSS: "path/to/my.css", * path to additional css file
 *      pageTitle: "",             * add title to print page
 *      removeInline: false,       * remove all inline styles from print elements
-*      printDelay: 333,           * variable print delay S. Vance
+*      printDelay: 333,           * variable print delay
 *      header: null               * prefix to html
 *  });
 *
@@ -143,7 +143,7 @@
         loadCSS: "",            // load an additional css file
         pageTitle: "",          // add title to print page
         removeInline: false,    // remove all inline styles
-        printDelay: 333,        // variable print delay S. Vance
+        printDelay: 333,        // variable print delay
         header: null            // prefix to html
     };
     
