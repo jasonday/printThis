@@ -1,5 +1,7 @@
 Jason Day
-printThis 1.3
+printThis 1.4
+
+5/12/2014     added formValues option. Preserves entered form data for print.
 
 10/11/2013    added printDelay option. Sometimes 333 isn't enough
               added header option -- inserts html before selected content, for images ensure to use full path
