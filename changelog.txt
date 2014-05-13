@@ -1,0 +1,23 @@
+5/12/2014     added formValues option. Preserves entered form data for print.
+
+10/11/2013    added printDelay option. Sometimes 333 isn't enough
+              added header option -- inserts html before selected content, for images ensure to use full path
+
+3/08/2013     added option to remove inline styles from print elements
+
+3/04/2013     fixed showstopper with IE and document.domain
+              major rework of file structure/methods
+              added "pageTitle" option
+              some minor rework of other areas
+
+11/23/2012    fixed showstopper with Firefox:
+              moved variable $doc to within setTimeout function
+
+11/11/2012    reworked plugin to use a jQuery object
+              removed document.write
+              added setTimeout (waits for iframe to full render before action)
+
+11/07/2012    added support for loading css files
+              removed Opera option, left in by default
+              added timeout to remove iframe after 60 seconds
+              added unique name to iframe
