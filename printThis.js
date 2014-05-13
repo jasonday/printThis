@@ -102,42 +102,31 @@
 
             // capture form/field values
             if (opt.formValues) {
-
-                var $input = $element.find('input:text');
+                // loop through inputs
+                var $input = $element.find('input');
                 if ($input.length) {
                     $input.each(function() {
                         var $this = $(this),
                             $name = $(this).attr('name'),
+                            $checker = $this.is(':checkbox') || $this.is(':radio'),
+                            $iframeInput = $doc.find('input[name=' + $name + ']'),
                             $value = $this.val();
-                        $doc.find('input[name=' + $name + ']').val($value);
-                    });
-                }
 
-                var $checkbox = $element.find('input:checkbox');
-                if ($checkbox.length) {
-                    $checkbox.each(function() {
-                        var $this = $(this),
-                            $name = $(this).attr('name'),
-                            $checked = $this.is(":checked");
-                        if ($checked) {
-                            $doc.find('input[name=' + $name + ']').attr('checked', 'checked');
+                        //order matters here
+                        if (!$checker) {
+                            $iframeInput.val($value);
+                        } else if ($this.is(':checked')) {
+                            if ($this.is(':checkbox')) {
+                                $iframeInput.attr('checked', 'checked');
+                            } else if ($this.is(':radio')) {
+                                $doc.find('input[name=' + $name + '][value=' + $value + ']').attr('checked', 'checked');
+                            }
                         }
+
                     });
                 }
 
-                var $radio = $element.find('input:radio');
-                if ($radio.length) {
-                    $radio.each(function() {
-                        var $this = $(this),
-                            $name = $(this).attr('name'),
-                            $checked = $this.is(":checked"),
-                            $value = $this.val();
-                        if ($checked) {
-                            $doc.find('input[name=' + $name + '][value=' + $value + ']').attr('checked', 'checked');
-                        }
-                    });
-                }
-
+                //loop through selects
                 var $select = $element.find('select');
                 if ($select.length) {
                     $select.each(function() {
@@ -148,6 +137,7 @@
                     });
                 }
 
+                //loop through textareas
                 var $textarea = $element.find('textarea');
                 if ($textarea.length) {
                     $textarea.each(function() {
