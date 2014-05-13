@@ -8,11 +8,10 @@
  *              jqPrint: https://github.com/permanenttourist/jquery.jqprint
  *              Ben Nadal: http://www.bennadel.com/blog/1591-Ask-Ben-Print-Part-Of-A-Web-Page-With-jQuery.htm
  *
- * Dual licensed under the MIT and GPL licenses:
+ * Licensed under the MIT licence:
  *              http://www.opensource.org/licenses/mit-license.php
- *              http://www.gnu.org/licenses/gpl.html
  *
- * (c) Jason Day 2013
+ * (c) Jason Day 2014
  *
  * Usage:
  *
