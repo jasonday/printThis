@@ -130,9 +130,10 @@
                     $radio.each(function() {
                         var $this = $(this),
                             $name = $(this).attr('name'),
-                            $checked = $this.is(":checked");
+                            $checked = $this.is(":checked"),
+                            $value = $this.val();
                         if ($checked) {
-                            $doc.find('input[name=' + $name + ']').attr('checked', 'checked');
+                            $doc.find('input[name=' + $name + '][value=' + $value + ']').attr('checked', 'checked');
                         }
                     });
                 }
