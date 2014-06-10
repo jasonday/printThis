@@ -109,7 +109,7 @@
                         var $this = $(this),
                             $name = $(this).attr('name'),
                             $checker = $this.is(':checkbox') || $this.is(':radio'),
-                            $iframeInput = $doc.find('input[name=' + $name + ']'),
+                            $iframeInput = $doc.find('input[name="' + $name + '"]'),
                             $value = $this.val();
 
                         //order matters here
@@ -119,7 +119,7 @@
                             if ($this.is(':checkbox')) {
                                 $iframeInput.attr('checked', 'checked');
                             } else if ($this.is(':radio')) {
-                                $doc.find('input[name=' + $name + '][value=' + $value + ']').attr('checked', 'checked');
+                                $doc.find('input[name="' + $name + '"][value=' + $value + ']').attr('checked', 'checked');
                             }
                         }
 
@@ -133,7 +133,7 @@
                         var $this = $(this),
                             $name = $(this).attr('name'),
                             $value = $this.val();
-                        $doc.find('select[name=' + $name + ']').val($value);
+                        $doc.find('select[name="' + $name + '"]').val($value);
                     });
                 }
 
@@ -144,7 +144,7 @@
                         var $this = $(this),
                             $name = $(this).attr('name'),
                             $value = $this.val();
-                        $doc.find('textarea[name=' + $name + ']').val($value);
+                        $doc.find('textarea[name="' + $name + '"]').val($value);
                     });
                 }
             } // end capture form/field values
