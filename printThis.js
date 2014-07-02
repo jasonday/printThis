@@ -76,13 +76,11 @@
             var $doc = $iframe.contents();
 
             // import page stylesheets
-            if (opt.importCSS) $("link[rel=stylesheet]").each(function() {
-                var href = $(this).attr("href");
-                if (href) {
-                    var media = $(this).attr("media") || "all";
-                    $doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>")
-                }
-            });
+            if (opt.importCSS) {
+                $("link, style").each(function() {
+                  $doc.find("head").append($(this).clone());
+                });
+            }
 
             //add title of the page
             if (opt.pageTitle) $doc.find("head").append("<title>" + opt.pageTitle + "</title>");
