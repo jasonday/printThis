@@ -3,7 +3,12 @@ printThis 1.4
 
 Printing plug-in for jQuery
 
-* Additional documentation coming
+Please read:
+
+I ask all users reporting bugs to:
+* create a jsfiddle (http://www.jsfiddle.net) or give an example url
+* set the option "debug: true" and inspect the iframe created by printThis and report on what is contained in the iframe
+I am unable to debug with limited information and need each user to actively participate in the debugging process.
 
 
 ToDo:
