@@ -19,6 +19,7 @@
  *      debug: false,               * show the iframe for debugging
  *      importCSS: true,            * import page CSS
  *      printContainer: true,       * grab outer container as well as the contents of the selector
+ *      excludeFromPrint: "",       * comma separated jquery selector to exclude the elements from print works with printContainer
  *      loadCSS: "path/to/my.css",  * path to additional css file
  *      pageTitle: "",              * add title to print page
  *      removeInline: false,        * remove all inline styles from print elements
@@ -75,13 +76,11 @@
             var $doc = $iframe.contents();
 
             // import page stylesheets
-            if (opt.importCSS) $("link[rel=stylesheet]").each(function() {
-                var href = $(this).attr("href");
-                if (href) {
-                    var media = $(this).attr("media") || "all";
-                    $doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>")
-                }
-            });
+            if (opt.importCSS) {
+                $("link, style").each(function() {
+                  $doc.find("head").append($(this).clone());
+                });
+            }
 
             //add title of the page
             if (opt.pageTitle) $doc.find("head").append("<title>" + opt.pageTitle + "</title>");
@@ -93,7 +92,12 @@
             if (opt.header) $doc.find("body").append(opt.header);
 
             // grab $.selector as container
-            if (opt.printContainer) $doc.find("body").append($element.outer());
+            if (opt.printContainer) {
+              var $content = $($element.outer());
+              $content.find(opt.excludeFromPrint).remove();
+
+              $doc.find("body").append($content.html());
+            }
 
             // otherwise just print interior elements of container
             else $element.each(function() {
@@ -190,6 +194,7 @@
         debug: false, // show the iframe for debugging
         importCSS: true, // import parent page css
         printContainer: true, // print outer container/$.selector
+        excludeFromPrint: "", // remove the elements from print works with printContainer
         loadCSS: "", // load an additional css file
         pageTitle: "", // add title to print page
         removeInline: false, // remove all inline styles
