@@ -82,6 +82,11 @@
                     $doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>")
                 }
             });
+            
+            // import style head tags
+            if (opt.importStyle) $("style").each(function() {
+                $doc.find("head").append($(this));
+            });
 
             //add title of the page
             if (opt.pageTitle) $doc.find("head").append("<title>" + opt.pageTitle + "</title>");
@@ -189,6 +194,7 @@
     $.fn.printThis.defaults = {
         debug: false, // show the iframe for debugging
         importCSS: true, // import parent page css
+        importStyle: true; // import style head tags
         printContainer: true, // print outer container/$.selector
         loadCSS: "", // load an additional css file
         pageTitle: "", // add title to print page
