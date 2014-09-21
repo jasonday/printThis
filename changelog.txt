@@ -1,3 +1,5 @@
+9/21/2014     added import of style tags
+
 5/12/2014     added formValues option. Preserves entered form data for print.
 
 10/11/2013    added printDelay option. Sometimes 333 isn't enough
