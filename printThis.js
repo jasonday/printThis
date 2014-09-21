@@ -18,6 +18,7 @@
  *  $("#mySelector").printThis({
  *      debug: false,               * show the iframe for debugging
  *      importCSS: true,            * import page CSS
+ *      importStyle: trule          * import style tags
  *      printContainer: true,       * grab outer container as well as the contents of the selector
  *      loadCSS: "path/to/my.css",  * path to additional css file
  *      pageTitle: "",              * add title to print page
@@ -83,7 +84,7 @@
                 }
             });
             
-            // import style head tags
+            // import style tags
             if (opt.importStyle) $("style").each(function() {
                 $doc.find("head").append($(this));
             });
@@ -194,7 +195,7 @@
     $.fn.printThis.defaults = {
         debug: false, // show the iframe for debugging
         importCSS: true, // import parent page css
-        importStyle: true; // import style head tags
+        importStyle: true; // import style tags
         printContainer: true, // print outer container/$.selector
         loadCSS: "", // load an additional css file
         pageTitle: "", // add title to print page
