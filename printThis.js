@@ -18,7 +18,7 @@
  *  $("#mySelector").printThis({
  *      debug: false,               * show the iframe for debugging
  *      importCSS: true,            * import page CSS
- *      importStyle: trule          * import style tags
+ *      importStyle: true,          * import style tags
  *      printContainer: true,       * grab outer container as well as the contents of the selector
  *      loadCSS: "path/to/my.css",  * path to additional css file
  *      pageTitle: "",              * add title to print page
@@ -195,7 +195,7 @@
     $.fn.printThis.defaults = {
         debug: false, // show the iframe for debugging
         importCSS: true, // import parent page css
-        importStyle: true; // import style tags
+        importStyle: true, // import style tags
         printContainer: true, // print outer container/$.selector
         loadCSS: "", // load an additional css file
         pageTitle: "", // add title to print page
