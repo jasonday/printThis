@@ -26,6 +26,7 @@
  *      printDelay: 333,            * variable print delay
  *      header: null,               * prefix to html
  *      formValues: true            * preserve input/form values
+ *      callback: function          * function to be called after window.print() finished
  *  });
  *
  * Notes:
@@ -177,7 +178,10 @@
                     $iframe[0].contentWindow.print();
                 }
 
-                $element.trigger("done");
+              // execute passed callback
+              if (typeof opt.callback == 'function') opt.callback.call();
+
+              $element.trigger("done");
                 //remove iframe after print
                 if (!opt.debug) {
                     setTimeout(function() {
