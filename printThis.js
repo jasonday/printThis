@@ -1,5 +1,5 @@
 /*
- * printThis v1.4
+ * printThis v1.5
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
@@ -86,14 +86,23 @@
             
             // import style tags
             if (opt.importStyle) $("style").each(function() {
-                $doc.find("head").append($(this));
+                $(this).clone().appendTo($doc.find("head"));
+                //$doc.find("head").append($(this));
             });
 
             //add title of the page
             if (opt.pageTitle) $doc.find("head").append("<title>" + opt.pageTitle + "</title>");
 
-            // import additional stylesheet
-            if (opt.loadCSS) $doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + opt.loadCSS + "'>");
+            // import additional stylesheet(s)
+            if (opt.loadCSS) {
+               if( $.isArray(opt.loadCSS)) {
+                    jQuery.each(opt.loadCSS, function(index, value) {
+                       $doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + this + "'>");
+                    });
+                } else {
+                    $doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + opt.loadCSS + "'>");
+                }
+            }
 
             // print header
             if (opt.header) $doc.find("body").append(opt.header);
@@ -197,7 +206,7 @@
         importCSS: true, // import parent page css
         importStyle: true, // import style tags
         printContainer: true, // print outer container/$.selector
-        loadCSS: "", // load an additional css file
+        loadCSS: "", // load an additional css file - load multiple stylesheets with an array []
         pageTitle: "", // add title to print page
         removeInline: false, // remove all inline styles
         printDelay: 333, // variable print delay
