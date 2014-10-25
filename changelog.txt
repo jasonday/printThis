@@ -1,3 +1,6 @@
+10/25/14      Fixed bug; <styles> being copied to print iframe were being removed from parent
+              Added ability to use loadCSS with multiple stylesheets
+
 9/21/2014     added import of style tags
 
 5/12/2014     added formValues option. Preserves entered form data for print.
