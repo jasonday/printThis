@@ -18,7 +18,7 @@
  *  $("#mySelector").printThis({
  *      debug: false,               * show the iframe for debugging
  *      importCSS: true,            * import page CSS
- *      importStyle: true,          * import style tags
+ *      importStyle: false,         * import style tags
  *      printContainer: true,       * grab outer container as well as the contents of the selector
  *      loadCSS: "path/to/my.css",  * path to additional css file - us an array [] for multiple
  *      pageTitle: "",              * add title to print page
@@ -202,16 +202,16 @@
 
     // defaults
     $.fn.printThis.defaults = {
-        debug: false, // show the iframe for debugging
-        importCSS: true, // import parent page css
-        importStyle: true, // import style tags
-        printContainer: true, // print outer container/$.selector
-        loadCSS: "", // load an additional css file - load multiple stylesheets with an array []
-        pageTitle: "", // add title to print page
-        removeInline: false, // remove all inline styles
-        printDelay: 333, // variable print delay
-        header: null, // prefix to html
-        formValues: true // preserve input/form values
+        debug: false,           // show the iframe for debugging
+        importCSS: true,        // import parent page css
+        importStyle: false,     // import style tags
+        printContainer: true,   // print outer container/$.selector
+        loadCSS: "",            // load an additional css file - load multiple stylesheets with an array []
+        pageTitle: "",          // add title to print page
+        removeInline: false,    // remove all inline styles
+        printDelay: 333,        // variable print delay
+        header: null,           // prefix to html
+        formValues: true        // preserve input/form values
     };
 
     // $.selector container
