@@ -186,7 +186,6 @@
                     $iframe[0].contentWindow.print();
                 }
 
-                $element.trigger("done");
                 //remove iframe after print
                 if (!opt.debug) {
                     setTimeout(function() {
