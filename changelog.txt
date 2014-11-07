@@ -1,3 +1,6 @@
+11/07/14      Fixed bug; Recent versions of Firefox are not applying the parent document domain to 
+              elements without fully qualified srcs. Added a <base>.
+
 10/25/14      Fixed bug; <styles> being copied to print iframe were being removed from parent
               Added ability to use loadCSS with multiple stylesheets
 
