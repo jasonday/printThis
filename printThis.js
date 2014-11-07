@@ -73,46 +73,51 @@
         // $iframe.ready() and $iframe.load were inconsistent between browsers    
         setTimeout(function() {
 
-            var $doc = $iframe.contents();
+            var $doc = $iframe.contents(),
+                $head = $doc.find("head"),
+                $body = $doc.find("body");
+
+            // add base tag to ensure elements use the parent domain
+            $head.append('<base href="' + document.location.protocol + '//' + document.location.host + '">');
 
             // import page stylesheets
             if (opt.importCSS) $("link[rel=stylesheet]").each(function() {
                 var href = $(this).attr("href");
                 if (href) {
                     var media = $(this).attr("media") || "all";
-                    $doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>")
+                    $head.append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>")
                 }
             });
             
             // import style tags
             if (opt.importStyle) $("style").each(function() {
-                $(this).clone().appendTo($doc.find("head"));
-                //$doc.find("head").append($(this));
+                $(this).clone().appendTo($head);
+                //$head.append($(this));
             });
 
             //add title of the page
-            if (opt.pageTitle) $doc.find("head").append("<title>" + opt.pageTitle + "</title>");
+            if (opt.pageTitle) $head.append("<title>" + opt.pageTitle + "</title>");
 
             // import additional stylesheet(s)
             if (opt.loadCSS) {
                if( $.isArray(opt.loadCSS)) {
                     jQuery.each(opt.loadCSS, function(index, value) {
-                       $doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + this + "'>");
+                       $head.append("<link type='text/css' rel='stylesheet' href='" + this + "'>");
                     });
                 } else {
-                    $doc.find("head").append("<link type='text/css' rel='stylesheet' href='" + opt.loadCSS + "'>");
+                    $head.append("<link type='text/css' rel='stylesheet' href='" + opt.loadCSS + "'>");
                 }
             }
 
             // print header
-            if (opt.header) $doc.find("body").append(opt.header);
+            if (opt.header) $body.append(opt.header);
 
             // grab $.selector as container
-            if (opt.printContainer) $doc.find("body").append($element.outer());
+            if (opt.printContainer) $body.append($element.outer());
 
             // otherwise just print interior elements of container
             else $element.each(function() {
-                $doc.find("body").append($(this).html());
+                $body.append($(this).html());
             });
 
             // capture form/field values
@@ -179,7 +184,7 @@
                     // check if the iframe was created with the ugly hack
                     // and perform another ugly hack out of neccessity
                     window.frames["printIframe"].focus();
-                    $doc.find("head").append("<script>  window.print(); </script>");
+                    $head.append("<script>  window.print(); </script>");
                 } else {
                     // proper method
                     $iframe[0].contentWindow.focus();
