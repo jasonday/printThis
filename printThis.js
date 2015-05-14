@@ -73,6 +73,8 @@
         // $iframe.ready() and $iframe.load were inconsistent between browsers    
         setTimeout(function() {
 
+            if (navigator.userAgent.match(/msie/i)) $iframe[0].contentDocument.write("<html><head><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"></head><body></body></html>");
+
             var $doc = $iframe.contents(),
                 $head = $doc.find("head"),
                 $body = $doc.find("body");
@@ -187,8 +189,12 @@
                     $head.append("<script>  window.print(); </script>");
                 } else {
                     // proper method
-                    $iframe[0].contentWindow.focus();
-                    $iframe[0].contentWindow.print();
+                    if (document.queryCommandSupported('print')) {
+                        $iframe[0].contentWindow.document.execCommand('print', false, null);
+                    } else {
+                        $iframe[0].contentWindow.focus();
+                        $iframe[0].contentWindow.print();
+                    }
                 }
 
                 //remove iframe after print
