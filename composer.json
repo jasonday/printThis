@@ -1,0 +1,15 @@
+{
+    "name": "jasonday/print-this",
+    "description": "Printing plug-in for jQuery",
+    "type": "library",
+    "require": {
+        "components/jquery": "^2.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "L.L.Bean",
+            "email": "movemaine@gmail.com"
+        }
+    ]
+}
