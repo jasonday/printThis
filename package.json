@@ -1,0 +1,22 @@
+{
+    "name": "print-this",
+    "version": "0.1.2",
+    "description": "Printing plug-in for jQuery",
+    "main": "printThis.js",
+    "dependencies": {
+        "jquery": "~1.11"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jasonday/printThis.git"
+    },
+    "author": "Jason Day",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/jasonday/printThis/issues"
+    },
+    "homepage": "https://github.com/jasonday/printThis#readme"
+}
