@@ -25,6 +25,7 @@
  *      removeInline: false,        * remove all inline styles from print elements
  *      printDelay: 333,            * variable print delay
  *      header: null,               * prefix to html
+ *      footer: null,               * suffix to html
  *      formValues: true            * preserve input/form values
  *  });
  *
@@ -88,7 +89,7 @@
                     $head.append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>")
                 }
             });
-            
+
             // import style tags
             if (opt.importStyle) $("style").each(function() {
                 $(this).clone().appendTo($head);
@@ -169,6 +170,9 @@
                 }
             } // end capture form/field values
 
+            // print footer
+            if (opt.footer) $body.append(opt.footer);
+
             // remove inline styles
             if (opt.removeInline) {
                 // $.removeAttr available jQuery 1.7+
@@ -215,6 +219,7 @@
         removeInline: false,    // remove all inline styles
         printDelay: 333,        // variable print delay
         header: null,           // prefix to html
+        footer: null,           // suffix to html
         formValues: true        // preserve input/form values
     };
 
