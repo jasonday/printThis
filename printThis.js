@@ -73,8 +73,6 @@
         // $iframe.ready() and $iframe.load were inconsistent between browsers    
         setTimeout(function() {
 
-            if (navigator.userAgent.match(/msie/i)) $iframe[0].contentDocument.write("<html><head><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"></head><body></body></html>");
-
             var $doc = $iframe.contents(),
                 $head = $doc.find("head"),
                 $body = $doc.find("body");
