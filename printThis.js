@@ -187,8 +187,8 @@
                     $head.append("<script>  window.print(); </script>");
                 } else {
                     // proper method
-                    if (document.queryCommandSupported('print')) {
-                        $iframe[0].contentWindow.document.execCommand('print', false, null);
+                    if (document.queryCommandSupported("print")) {
+                        $iframe[0].contentWindow.document.execCommand("print", false, null);
                     } else {
                         $iframe[0].contentWindow.focus();
                         $iframe[0].contentWindow.print();
