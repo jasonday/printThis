@@ -187,8 +187,12 @@
                     $head.append("<script>  window.print(); </script>");
                 } else {
                     // proper method
-                    $iframe[0].contentWindow.focus();
-                    $iframe[0].contentWindow.print();
+                    if (document.queryCommandSupported("print")) {
+                        $iframe[0].contentWindow.document.execCommand("print", false, null);
+                    } else {
+                        $iframe[0].contentWindow.focus();
+                        $iframe[0].contentWindow.print();
+                    }
                 }
 
                 //remove iframe after print
