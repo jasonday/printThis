@@ -61,7 +61,7 @@
         var $iframe = $("#" + strFrameName);
 
         // show frame if in debug mode
-        if (!opt.debug) $iframe.css({
+        if (opt.debug) $iframe.css({
             position: "absolute",
             width: "0px",
             height: "0px",
