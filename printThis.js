@@ -69,23 +69,22 @@
             top: "-600px"
         });
 
+        // Add doctype to fix the style difference between printing and render
+        function setDocType($iframe,doctype){
+            var win, doc;
+            win = $iframe.get(0);
+            win = win.contentWindow || win.contentDocument || win;
+            doc = win.document || win.contentDocument || win;
+            doc.open();
+            doc.write(doctype);
+            doc.close();
+        }
+        if(opt.doctypeString){
+            setDocType($iframe,opt.doctypeString);
+        }
 
         // $iframe.ready() and $iframe.load were inconsistent between browsers    
         setTimeout(function() {
-
-            // Add doctype to fix the style difference between printing and render
-            function setDocType($iframe,doctype){
-                var win, doc;
-                win = $iframe.get(0);
-                win = win.contentWindow || win.contentDocument || win;
-                doc = win.document || win.contentDocument || win;
-                doc.open();
-                doc.write(doctype);
-                doc.close();
-            }
-            if(opt.doctypeString){
-                setDocType($iframe,opt.doctypeString);
-            }
 
             var $doc = $iframe.contents(),
                 $head = $doc.find("head"),
