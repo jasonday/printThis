@@ -94,6 +94,11 @@
             // add base tag to ensure elements use the parent domain
             $head.append('<base href="' + document.location.protocol + '//' + document.location.host + '">');
 
+            // import page svg
+            if(opt.svg) {
+                $head.append($('head>svg').clone());
+            }
+
             // import page stylesheets
             if (opt.importCSS) $("link[rel=stylesheet]").each(function() {
                 var href = $(this).attr("href");
@@ -234,7 +239,8 @@
         printDelay: 333,        // variable print delay
         header: null,           // prefix to html
         formValues: true,        // preserve input/form values
-        doctypeString: '<!DOCTYPE html>' // html doctype
+        doctypeString: '<!DOCTYPE html>', // html doctype
+        svg: false
     };
 
     // $.selector container
