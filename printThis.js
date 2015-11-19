@@ -36,6 +36,14 @@
     var opt;
     $.fn.printThis = function(options) {
         opt = $.extend({}, $.fn.printThis.defaults, options);
+
+        // if print svg in firefox
+        if(opt.svg) {
+            if(/firefox/i.test(navigator.userAgent)) {
+                opt.printDelay = 333;
+            }
+        }
+
         var $element = this instanceof jQuery ? this : $(this);
 
         var strFrameName = "printThis-" + (new Date()).getTime();
