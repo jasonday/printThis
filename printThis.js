@@ -70,18 +70,18 @@
         });
 
         // Add doctype to fix the style difference between printing and render
-        function setDocType($iframe,doctype){
+        // No need to add doctype, just to open and close should be ok.
+        function setDocType($iframe) {
             var win, doc;
             win = $iframe.get(0);
             win = win.contentWindow || win.contentDocument || win;
             doc = win.document || win.contentDocument || win;
             doc.open();
-            doc.write(doctype);
+            // doc.write(doctype);
             doc.close();
         }
-        if(opt.doctypeString){
-            setDocType($iframe,opt.doctypeString);
-        }
+
+        setDocType($iframe);
 
         // $iframe.ready() and $iframe.load were inconsistent between browsers    
         setTimeout(function() {
@@ -238,7 +238,6 @@
         printDelay: 333,        // variable print delay
         header: null,           // prefix to html
         formValues: true,        // preserve input/form values
-        doctypeString: '<!DOCTYPE html>', // html doctype
         svg: false
     };
 
