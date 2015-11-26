@@ -11,7 +11,7 @@
  * Licensed under the MIT licence:
  *              http://www.opensource.org/licenses/mit-license.php
  *
- * (c) Jason Day 2014
+ * (c) Jason Day 2015
  *
  * Usage:
  *
