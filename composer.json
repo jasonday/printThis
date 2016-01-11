@@ -3,7 +3,7 @@
     "description": "Printing plug-in for jQuery",
     "type": "library",
     "require": {
-        "components/jquery": "~1.11"
+        "components/jquery": ">=1.11"
     },
     "license": "MIT",
     "authors": [
