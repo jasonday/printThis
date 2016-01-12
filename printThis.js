@@ -36,6 +36,14 @@
     var opt;
     $.fn.printThis = function(options) {
         opt = $.extend({}, $.fn.printThis.defaults, options);
+
+        // if print svg in firefox
+        if(opt.svg) {
+            if(/firefox/i.test(navigator.userAgent)) {
+                opt.printDelay = 333;
+            }
+        }
+
         var $element = this instanceof jQuery ? this : $(this);
 
         var strFrameName = "printThis-" + (new Date()).getTime();
@@ -61,7 +69,7 @@
         var $iframe = $("#" + strFrameName);
 
         // show frame if in debug mode
-        if (!opt.debug) $iframe.css({
+        if (opt.debug) $iframe.css({
             position: "absolute",
             width: "0px",
             height: "0px",
@@ -69,23 +77,22 @@
             top: "-600px"
         });
 
+        // Add doctype to fix the style difference between printing and render
+        // No need to add doctype, just to open and close should be ok.
+        function setDocType($iframe) {
+            var win, doc;
+            win = $iframe.get(0);
+            win = win.contentWindow || win.contentDocument || win;
+            doc = win.document || win.contentDocument || win;
+            doc.open();
+            // doc.write(doctype);
+            doc.close();
+        }
+
+        setDocType($iframe);
 
         // $iframe.ready() and $iframe.load were inconsistent between browsers    
         setTimeout(function() {
-
-            // Add doctype to fix the style difference between printing and render
-            function setDocType($iframe,doctype){
-                var win, doc;
-                win = $iframe.get(0);
-                win = win.contentWindow || win.contentDocument || win;
-                doc = win.document || win.contentDocument || win;
-                doc.open();
-                doc.write(doctype);
-                doc.close();
-            }
-            if(opt.doctypeString){
-                setDocType($iframe,opt.doctypeString);
-            }
 
             var $doc = $iframe.contents(),
                 $head = $doc.find("head"),
@@ -93,6 +100,11 @@
 
             // add base tag to ensure elements use the parent domain
             $head.append('<base href="' + document.location.protocol + '//' + document.location.host + '">');
+
+            // import page svg
+            if(opt.svg) {
+                $head.append($('head>svg').clone());
+            }
 
             // import page stylesheets
             if (opt.importCSS) $("link[rel=stylesheet]").each(function() {
@@ -234,7 +246,7 @@
         printDelay: 333,        // variable print delay
         header: null,           // prefix to html
         formValues: true,        // preserve input/form values
-        doctypeString: '<!DOCTYPE html>' // html doctype
+        svg: false
     };
 
     // $.selector container
