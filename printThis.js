@@ -92,7 +92,7 @@
                 $body = $doc.find("body");
 
             // add base tag to ensure elements use the parent domain
-            $head.append('<base href="' + document.location.protocol + '//' + document.location.host + '">');
+            $head.append('<base href="' + document.location.protocol + '//' + document.location.host + document.location.pathname+'">');
 
             // import page stylesheets
             if (opt.importCSS) $("link[rel=stylesheet]").each(function() {
