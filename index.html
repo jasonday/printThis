@@ -11,39 +11,83 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">printThis</h1>
-      <h2 class="project-tagline">jQuery printing plugin</h2>
+      <h1 class="project-name">Printthis</h1>
+      <h2 class="project-tagline">jQuery print plugin</h2>
       <a href="https://github.com/jasonday/printThis" class="btn">View on GitHub</a>
       <a href="https://github.com/jasonday/printThis/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/jasonday/printThis/tarball/master" class="btn">Download .tar.gz</a>
     </section>
-    <section class="sub-head">
-      <div class="wrapper">
-            <div class="git-buttons">
-          <!-- Place this tag where you want the button to render. -->
-        <a class="github-button" href="https://github.com/jasonday/printThis" data-icon="octicon-eye" data-count-href="/jasonday/printThis/watchers" data-count-api="/repos/jasonday/printThis#subscribers_count" data-count-aria-label="# watchers on GitHub" aria-label="Watch jasonday/printThis on GitHub">Watch</a>
-        <a class="github-button" href="https://github.com/jasonday/printThis" data-icon="octicon-star" data-count-href="/jasonday/printThis/stargazers" data-count-api="/repos/jasonday/printThis#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star jasonday/printThis on GitHub">Star</a>
-                <a class="github-button" href="https://github.com/jasonday/printThis" data-icon="octicon-repo-forked" data-count-href="/jasonday/printThis/network" data-count-api="/repos/jasonday/printThis#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork jasonday/printThis/ on GitHub">Fork</a>
-      </div>
-      </div>
-    </section>
 
     <section class="main-content">
-      <p>printThis
-jQuery plugin to print portions of the page.</p>
+      <h1>
+<a id="printthis" class="anchor" href="#printthis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>printThis</h1>
 
-<p>Please read:</p>
+<p>Printing plug-in for jQuery</p>
 
-<p>I ask all users reporting bugs to:</p>
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
-<li>Create a jsfiddle (<a href="http://www.jsfiddle.net">http://www.jsfiddle.net</a>) or give an example url</li>
-<li>Set the option "debug: true" and inspect the iframe created by printThis and report on what is contained in the iframe</li>
+<li>Print specific &amp; multiple DOM elements</li>
+<li>Preserve page CSS/styling
+** or add new CSS; the world is your oyster!</li>
+<li>Preserve form entries</li>
 </ul>
 
-<p>I am unable to debug with limited information and need each user to actively participate in the debugging process.</p>
+<h3>
+<a id="non-features" class="anchor" href="#non-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Non-features</h3>
 
-<p>ToDo:</p>
+<p>really 'Issues'</p>
+
+<ul>
+<li>canvas/svg elements such as map routes are not preserved</li>
+</ul>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="basic" class="anchor" href="#basic" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basic</h3>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>selector<span class="pl-pds">'</span></span>).<span class="pl-en">printThis</span>();</pre></div>
+
+<h3>
+<a id="advanced" class="anchor" href="#advanced" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Advanced</h3>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>#kitty-one, #kitty-two, #kitty-three<span class="pl-pds">'</span></span>).<span class="pl-en">printThis</span>({
+        importCSS<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+        loadCSS<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
+        header<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>&lt;h1&gt;Look at all of my kitties!&lt;/h1&gt;<span class="pl-pds">"</span></span>
+    });</pre></div>
+
+<h3>
+<a id="all-options" class="anchor" href="#all-options" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>All Options</h3>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#mySelector<span class="pl-pds">"</span></span>).<span class="pl-en">printThis</span>({
+        debug<span class="pl-k">:</span> <span class="pl-c1">false</span>,               <span class="pl-k">*</span> show the iframe <span class="pl-k">for</span> debugging
+        importCSS<span class="pl-k">:</span> <span class="pl-c1">true</span>,            <span class="pl-k">*</span> <span class="pl-k">import</span> page CSS
+        importStyle<span class="pl-k">:</span> <span class="pl-c1">false</span>,         <span class="pl-k">*</span> <span class="pl-k">import</span> style tags
+        printContainer<span class="pl-k">:</span> <span class="pl-c1">true</span>,       <span class="pl-k">*</span> grab outer container as well as the contents <span class="pl-k">of</span> the selector
+        loadCSS<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>path/to/my.css<span class="pl-pds">"</span></span>,  <span class="pl-k">*</span> path to additional css file <span class="pl-k">-</span> us an array [] <span class="pl-k">for</span> multiple
+        pageTitle<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,              <span class="pl-k">*</span> add title to print page
+        removeInline<span class="pl-k">:</span> <span class="pl-c1">false</span>,        <span class="pl-k">*</span> remove all inline styles <span class="pl-k">from</span> print elements
+        printDelay<span class="pl-k">:</span> <span class="pl-c1">333</span>,            <span class="pl-k">*</span> variable print delay; depending on complexity a higher value may be necessary
+        header<span class="pl-k">:</span> <span class="pl-c1">null</span>,               <span class="pl-k">*</span> prefix to html
+        formValues<span class="pl-k">:</span> <span class="pl-c1">true</span>            <span class="pl-k">*</span> preserve input<span class="pl-k">/</span>form values
+    });</pre></div>
+
+<h2>
+<a id="please-read" class="anchor" href="#please-read" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Please read</h2>
+
+<ul>
+<li>"It's not working" without any details is not a valid issue and will be closed</li>
+<li>A url, or html file, is neccessary to debug. Due to the complexities of printing and this plugin, an example is the best way to debug</li>
+<li>When troubleshooting, set <code>debug: true</code> and inspect the iframe</li>
+<li>Every user should be active in the debugging process</li>
+</ul>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ToDo:</h2>
 
 <ul>
 <li>Look at more efficient form field value persist</li>
@@ -57,9 +101,7 @@ jQuery plugin to print portions of the page.</p>
       </footer>
 
     </section>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-    <script type="text/javascript" src="https://rawgit.com/jasonday/printThis/master/printThis.js"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   
   </body>
 </html>
