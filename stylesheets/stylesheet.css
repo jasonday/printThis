@@ -1,3 +1,4 @@
+/* printThis github stylesheet */
 * {
   box-sizing: border-box; }
 
@@ -7,11 +8,7 @@ body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-<<<<<<< HEAD
   color: #333333; }
-=======
-  color: #606c71; }
->>>>>>> origin/gh-pages
 
 a {
   color: #1e6bb8;
@@ -22,26 +19,17 @@ a {
 .btn {
   display: inline-block;
   margin-bottom: 1rem;
-<<<<<<< HEAD
   color: #fff;
   background-color: rgba(0, 0, 0, 0.2);
   border-color: #fff);
   border-style: solid;
   border-width: 2px;
-=======
-  color: rgba(255, 255, 255, 0.7);
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  border-style: solid;
-  border-width: 1px;
->>>>>>> origin/gh-pages
   border-radius: 0.3rem;
   transition: color 0.2s, background-color 0.2s, border-color 0.2s; }
   .btn + .btn {
     margin-left: 1rem; }
 
 .btn:hover {
-<<<<<<< HEAD
   color: #fff;
   text-decoration: none;
   background-color: rgba(0, 0, 0, 0.4); }
@@ -76,12 +64,6 @@ a {
   height: 20px;
   margin-top: 0;
 }
-=======
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.3); }
->>>>>>> origin/gh-pages
 
 @media screen and (min-width: 64em) {
   .btn {
@@ -105,13 +87,8 @@ a {
 .page-header {
   color: #fff;
   text-align: center;
-<<<<<<< HEAD
   background-color: #07587F; }
 
-=======
-  background-color: #159957;
-  background-image: linear-gradient(120deg, #155799, #159957); }
->>>>>>> origin/gh-pages
 
 @media screen and (min-width: 64em) {
   .page-header {
@@ -143,12 +120,7 @@ a {
 
 .project-tagline {
   margin-bottom: 2rem;
-<<<<<<< HEAD
   font-weight: normal; }
-=======
-  font-weight: normal;
-  opacity: 0.7; }
->>>>>>> origin/gh-pages
 
 @media screen and (min-width: 64em) {
   .project-tagline {
@@ -170,11 +142,7 @@ a {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: normal;
-<<<<<<< HEAD
   color: #064666; }
-=======
-  color: #159957; }
->>>>>>> origin/gh-pages
 .main-content p {
   margin-bottom: 1em; }
 .main-content code {
@@ -189,11 +157,7 @@ a {
   margin-top: 0;
   margin-bottom: 1rem;
   font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
-<<<<<<< HEAD
   color: #333;
-=======
-  color: #567482;
->>>>>>> origin/gh-pages
   word-wrap: normal;
   background-color: #f3f6fa;
   border: solid 1px #dce6f0;
@@ -282,11 +246,7 @@ a {
     font-size: 1.1rem; } }
 
 @media screen and (max-width: 42em) {
-<<<<<<< HEAD
   .main-content  {
-=======
-  .main-content {
->>>>>>> origin/gh-pages
     padding: 2rem 1rem;
     font-size: 1rem; } }
 
