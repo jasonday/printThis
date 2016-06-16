@@ -25,7 +25,8 @@
  *      removeInline: false,        * remove all inline styles from print elements
  *      printDelay: 333,            * variable print delay
  *      header: null,               * prefix to html
- *      formValues: true            * preserve input/form values
+ *      formValues: true,           * preserve input/form values
+ *      baseURL:http://domain/path  * The base that your scripts/css-files will be relative to
  *  });
  *
  * Notes:
@@ -90,9 +91,12 @@
             var $doc = $iframe.contents(),
                 $head = $doc.find("head"),
                 $body = $doc.find("body");
-
-            // add base tag to ensure elements use the parent domain
-            $head.append('<base href="' + document.location.protocol + '//' + document.location.host + '">');
+            if (opt.baseURL){
+                $head.append('<base href="' + opt.baseURL+'">');
+            }else{
+                // add base tag to ensure elements use the parent domain
+                $head.append('<base href="' + document.location.protocol + '//' + document.location.host+'">');
+            }
 
             // import page stylesheets
             if (opt.importCSS) $("link[rel=stylesheet]").each(function() {
