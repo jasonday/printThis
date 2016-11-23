@@ -93,12 +93,12 @@
                 $body = $doc.find("body");
 
             // add base tag to ensure elements use the parent domain
-			if (opt.base && $('base').length > 0) {
-				// take the base tag from the original page
-				$head.append('<base href="' + $('base').attr('href') + '">');
-			} else {
-				$head.append('<base href="' + document.location.protocol + '//' + document.location.host + '">');
-			}
+            if (opt.base && $('base').length > 0) {
+                // take the base tag from the original page
+                $head.append('<base href="' + $('base').attr('href') + '">');
+            } else {
+                $head.append('<base href="' + document.location.protocol + '//' + document.location.host + '">');
+            }
 
             // import page stylesheets
             if (opt.importCSS) $("link[rel=stylesheet]").each(function() {
