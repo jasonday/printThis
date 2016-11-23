@@ -240,7 +240,7 @@
         printDelay: 333,        // variable print delay
         header: null,           // prefix to html
         formValues: true,       // preserve input/form values
-		base: true,             // preserve the base tag (if available)
+        base: true,             // preserve the base tag (if available)
         doctypeString: '<!DOCTYPE html>' // html doctype
     };
 

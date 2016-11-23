@@ -1,19 +1,21 @@
-11/07/14      Fixed bug; Recent versions of Firefox are not applying the parent document domain to 
+11/23/2016    added new base option. Preserves the BASE tag from the parent page.
+
+11/07/2014    Fixed bug; Recent versions of Firefox are not applying the parent document domain to 
               elements without fully qualified srcs. Added a <base>.
 
-10/25/14      Fixed bug; <styles> being copied to print iframe were being removed from parent
+10/25/2014    Fixed bug; <styles> being copied to print iframe were being removed from parent
               Added ability to use loadCSS with multiple stylesheets
 
-9/21/2014     added import of style tags
+09/21/2014    added import of style tags
 
-5/12/2014     added formValues option. Preserves entered form data for print.
+05/12/2014    added formValues option. Preserves entered form data for print.
 
 10/11/2013    added printDelay option. Sometimes 333 isn't enough
               added header option -- inserts html before selected content, for images ensure to use full path
 
-3/08/2013     added option to remove inline styles from print elements
+03/08/2013    added option to remove inline styles from print elements
 
-3/04/2013     fixed showstopper with IE and document.domain
+03/04/2013    fixed showstopper with IE and document.domain
               major rework of file structure/methods
               added "pageTitle" option
               some minor rework of other areas
