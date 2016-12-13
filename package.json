@@ -1,6 +1,6 @@
 {
     "name": "print-this",
-    "version": "0.2.0",
+    "version": "1.6.0",
     "description": "Printing plug-in for jQuery",
     "main": "printThis.js",
     "dependencies": {
