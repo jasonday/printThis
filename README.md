@@ -36,13 +36,14 @@ really 'Issues'
         removeInline: false,        * remove all inline styles from print elements
         printDelay: 333,            * variable print delay; depending on complexity a higher value may be necessary
         header: null,               * prefix to html
+        base: false                 * preserve the BASE tag
         formValues: true            * preserve input/form values
     });
 ```
 
 ## Please read
 * "It's not working" without any details is not a valid issue and will be closed
-* A url, or html file, is neccessary to debug. Due to the complexities of printing and this plugin, an example is the best way to debug
+* A url, or html file, is necessary to debug. Due to the complexities of printing and this plugin, an example is the best way to debug
 * When troubleshooting, set `debug: true` and inspect the iframe
 * Every user should be active in the debugging process
 

@@ -1,5 +1,5 @@
 /*
- * printThis v1.5
+ * printThis v1.6.0
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
@@ -25,7 +25,7 @@
  *      removeInline: false,        * remove all inline styles from print elements
  *      printDelay: 333,            * variable print delay
  *      header: null,               * prefix to html
- *      base: false,                 * preserve the BASE tag
+ *      base: false,                * preserve the BASE tag
  *      formValues: true            * preserve input/form values
  *  });
  *
