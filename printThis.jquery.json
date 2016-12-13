@@ -1,6 +1,6 @@
 {
   "name": "printThis",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "title": "printThis",
   "description": "Printing plug-in for jQuery. Print specific page elements, add print options, maintain or add new styling using jQuery.",
   "author": {
