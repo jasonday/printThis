@@ -25,7 +25,7 @@
  *      removeInline: false,        * remove all inline styles from print elements
  *      printDelay: 333,            * variable print delay
  *      header: null,               * prefix to html
- *      base: true,                 * preserve the BASE tag
+ *      base: false,                 * preserve the BASE tag
  *      formValues: true            * preserve input/form values
  *  });
  *
@@ -240,7 +240,7 @@
         printDelay: 333,        // variable print delay
         header: null,           // prefix to html
         formValues: true,       // preserve input/form values
-        base: true,             // preserve the base tag (if available)
+        base: false,            // preserve the base tag (if available)
         doctypeString: '<!DOCTYPE html>' // html doctype
     };
 
