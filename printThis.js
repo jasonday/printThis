@@ -25,6 +25,7 @@
  *      removeInline: false,        * remove all inline styles from print elements
  *      printDelay: 333,            * variable print delay
  *      header: null,               * prefix to html
+ *      base: false,                 * preserve the BASE tag
  *      formValues: true            * preserve input/form values
  *  });
  *
@@ -92,7 +93,12 @@
                 $body = $doc.find("body");
 
             // add base tag to ensure elements use the parent domain
-            $head.append('<base href="' + document.location.protocol + '//' + document.location.host + '">');
+            if (opt.base && $('base').length > 0) {
+                // take the base tag from the original page
+                $head.append('<base href="' + $('base').attr('href') + '">');
+            } else {
+                $head.append('<base href="' + document.location.protocol + '//' + document.location.host + '">');
+            }
 
             // import page stylesheets
             if (opt.importCSS) $("link[rel=stylesheet]").each(function() {
@@ -233,7 +239,8 @@
         removeInline: false,    // remove all inline styles
         printDelay: 333,        // variable print delay
         header: null,           // prefix to html
-        formValues: true,        // preserve input/form values
+        formValues: true,       // preserve input/form values
+        base: false,            // preserve the base tag (if available)
         doctypeString: '<!DOCTYPE html>' // html doctype
     };
 
