@@ -36,7 +36,7 @@ really 'Issues'
         removeInline: false,        * remove all inline styles from print elements
         printDelay: 333,            * variable print delay; depending on complexity a higher value may be necessary
         header: null,               * prefix to html
-        base: false                 * preserve the BASE tag
+        base: false                 * preserve the BASE tag, or accept a string for the URL
         formValues: true            * preserve input/form values
     });
 ```

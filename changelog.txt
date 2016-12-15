@@ -1,4 +1,8 @@
+12/14/2016    Added support for arbitrary BASE urls.
+              Bumped to 1.7.0, following semver (new feature).
+
 12/13/2016    Incremented to 1.6.0 for new base setting.
+
 11/23/2016    added new base option. Preserves the BASE tag from the parent page.
 
 11/07/2014    Fixed bug; Recent versions of Firefox are not applying the parent document domain to 
