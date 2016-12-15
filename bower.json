@@ -1,5 +1,5 @@
 {
-  "name": "print-this",
+  "name": "printThis",
   "description": "Printing plug-in for jQuery",
   "main": "printThis.js",
   "authors": [
