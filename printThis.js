@@ -1,4 +1,4 @@
-/*
+/**
  * printThis v1.7.0
  * @desc Printing plug-in for jQuery
  * @author Jason Day
@@ -32,6 +32,7 @@
  * Notes:
  *  - the loadCSS will load additional css (with or without @media print) into the iframe, adjusting layout
  */
+
 ;
 (function($) {
     var opt;
