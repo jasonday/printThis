@@ -1,5 +1,5 @@
 /**
- * printThis v1.7.0
+ * printThis v2.0.0
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
@@ -35,10 +35,10 @@
 
 ;
 (function($) {
-    var opt;
     $.fn.printThis = function(options) {
-        opt = $.extend({}, $.fn.printThis.defaults, options);
+        var opt = $.extend({}, $.fn.printThis.defaults, options);
         var $element = this instanceof jQuery ? this : $(this);
+        var $iframe;
 
         var strFrameName = "printThis-" + (new Date()).getTime();
 
@@ -53,14 +53,14 @@
             document.body.appendChild(printI);
             printI.src = iframeSrc;
 
+            $iframe = $(printI);
+
         } else {
             // other browsers inherit document.domain, and IE works if document.domain is not explicitly set
-            var $frame = $("<iframe id='" + strFrameName + "' name='printIframe' />");
-            $frame.appendTo("body");
+            $iframe = $("<iframe id='" + strFrameName + "' name='printIframe' />");
+
+            $iframe.appendTo("body");
         }
-
-
-        var $iframe = $("#" + strFrameName);
 
         // show frame if in debug mode
         if (!opt.debug) $iframe.css({
