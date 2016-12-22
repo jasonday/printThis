@@ -35,6 +35,7 @@
 
 ;
 (function($) {
+
     $.fn.printThis = function(options) {
         var opt = $.extend({}, $.fn.printThis.defaults, options);
         var $element = this instanceof jQuery ? this : $(this);
