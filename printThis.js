@@ -45,7 +45,7 @@
         if (window.location.hostname !== document.domain && navigator.userAgent.match(/msie/i)) {
             // Ugly IE hacks due to IE not inheriting document.domain from parent
             // checks if document.domain is set by comparing the host name against document.domain
-            var iframeSrc = "javascript:document.write(\"<head><script>document.domain=\\\"" + document.domain + "\\\";</script></head><body></body>\")";
+            var iframeSrc = 'javascript:document.write(\'<head><script>document.domain="' + document.domain + '";</script></head><body></body>\')';
             var printI = document.createElement('iframe');
             printI.name = "printIframe";
             printI.id = strFrameName;
