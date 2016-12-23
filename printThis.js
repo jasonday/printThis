@@ -36,12 +36,24 @@
 ;
 (function($) {
 
+    // Small runOnce wrapper
+    // IE calls load multiple times as we manipulate the contents of the iframe.
+    function runOnce(fn) {
+        var run = false;
+
+        return function(){
+            if (!run) {
+                run = true;
+                return fn();
+            }
+        }
+    }
+
     $.fn.printThis = function(options) {
         var opt = $.extend({}, $.fn.printThis.defaults, options);
         var $element = this instanceof jQuery ? this : $(this);
-        var $iframe;
-
         var strFrameName = "printThis-" + (new Date()).getTime();
+        var $iframe;
 
         if (window.location.hostname !== document.domain && navigator.userAgent.match(/msie/i)) {
             // Ugly IE hacks due to IE not inheriting document.domain from parent
@@ -51,15 +63,19 @@
             printI.name = "printIframe";
             printI.id = strFrameName;
             printI.className = "MSIE";
+            if (printI.attachEvent){
+                printI.attachEvent("onload", runOnce(iFrameLoaded));
+            } else {
+                printI.onload = runOnce(iFrameLoaded);
+            }
+            $iframe = $(printI);
             document.body.appendChild(printI);
             printI.src = iframeSrc;
-
-            $iframe = $(printI);
 
         } else {
             // other browsers inherit document.domain, and IE works if document.domain is not explicitly set
             $iframe = $("<iframe id='" + strFrameName + "' name='printIframe' />");
-
+            $iframe[0].addEventListener('load', runOnce(iFrameLoaded));
             $iframe.appendTo("body");
         }
 
@@ -72,9 +88,8 @@
             top: "-600px"
         });
 
-
         // $iframe.ready() and $iframe.load were inconsistent between browsers    
-        setTimeout(function() {
+        function iFrameLoaded() {
 
             // Add doctype to fix the style difference between printing and render
             function setDocType($iframe,doctype){
@@ -86,7 +101,8 @@
                 doc.write(doctype);
                 doc.close();
             }
-            if(opt.doctypeString){
+
+            if (opt.doctypeString){
                 setDocType($iframe,opt.doctypeString);
             }
 
@@ -233,7 +249,7 @@
 
             }, opt.printDelay);
 
-        }, 333);
+        }
 
     };
 
