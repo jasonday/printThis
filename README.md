@@ -31,7 +31,7 @@ really 'Issues'
         importCSS: true,            * import page CSS
         importStyle: false,         * import style tags
         printContainer: true,       * grab outer container as well as the contents of the selector
-        loadCSS: "path/to/my.css",  * path to additional css file - us an array [] for multiple
+        loadCSS: "path/to/my.css",  * path to additional css file - use an array [] for multiple
         pageTitle: "",              * add title to print page
         removeInline: false,        * remove all inline styles from print elements
         printDelay: 333,            * variable print delay; depending on complexity a higher value may be necessary
