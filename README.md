@@ -44,7 +44,7 @@ really 'Issues'
 ## Please read
 * "It's not working" without any details is not a valid issue and will be closed
 * A url, or html file, is necessary to debug. Due to the complexities of printing and this plugin, an example is the best way to debug
-* When troubleshooting, set `debug: true` and inspect the iframe
+* When troubleshooting, set `debug: true` and inspect the iframe. Please report your findings when reporting an issue
 * Every user should be active in the debugging process
 
 ## ToDo:
