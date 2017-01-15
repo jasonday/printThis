@@ -1,3 +1,6 @@
+10/15/2017    Added quoting around values to correct behavior of complex values
+              Bumped to 1.7.1
+
 12/14/2016    Added support for arbitrary BASE urls.
               Bumped to 1.7.0, following semver (new feature).
 
