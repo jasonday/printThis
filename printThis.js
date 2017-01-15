@@ -113,7 +113,7 @@
                 var href = $(this).attr("href");
                 if (href) {
                     var media = $(this).attr("media") || "all";
-                    $head.append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>")
+                    $head.append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>");
                 }
             });
             
