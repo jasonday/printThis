@@ -1,4 +1,8 @@
-10/15/2017    Added quoting around values to correct behavior of complex values
+01/16/2017    Added footer as proposed in 2015 by @RomainGehrig
+              Bumped version to 1.8.0 for new feature
+              Corrected 1.7.1 changelog date to 01/15/2017
+
+01/15/2017    Added quoting around values to correct behavior of complex values
               Bumped to 1.7.1
 
 12/14/2016    Added support for arbitrary BASE urls.
