@@ -1,5 +1,5 @@
 /*
- * printThis v1.7.1
+ * printThis v1.8.0
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
@@ -25,6 +25,7 @@
  *      removeInline: false,        * remove all inline styles from print elements
  *      printDelay: 333,            * variable print delay
  *      header: null,               * prefix to html
+ *      footer: null,               * postfix to html
  *      base: false,                * preserve the BASE tag, or accept a string for the URL
  *      formValues: true            * preserve input/form values
  *  });
@@ -206,6 +207,9 @@
                 }
             }
 
+            // print "footer"
+            if (opt.footer) $body.append(opt.footer);
+
             setTimeout(function() {
                 if ($iframe.hasClass("MSIE")) {
                     // check if the iframe was created with the ugly hack
@@ -246,6 +250,7 @@
         removeInline: false,    // remove all inline styles
         printDelay: 333,        // variable print delay
         header: null,           // prefix to html
+        footer: null,           // postfix to html
         formValues: true,       // preserve input/form values
         base: false,            // preserve the BASE tag, or accept a string for the URL
         doctypeString: '<!DOCTYPE html>' // html doctype
