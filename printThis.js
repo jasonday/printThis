@@ -281,6 +281,6 @@
 
     // $.selector container
     jQuery.fn.outer = function() {
-        return $($("<div></div>").html(this.clone())).html()
+        return $($("<div></div>").html(this.clone())).html();
     }
 })(jQuery);
