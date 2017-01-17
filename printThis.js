@@ -140,12 +140,26 @@
             // print header
             if (opt.header) $body.append(opt.header);
 
+            // add canvas data-ids.
+            var canvasId = 0;
+            $element.find('canvas').each(function(){
+                $(this).attr('data-printthis', canvasId++);
+            });
+
             // grab $.selector as container
             if (opt.printContainer) $body.append($element.outer());
 
             // otherwise just print interior elements of container
             else $element.each(function() {
                 $body.append($(this).html());
+            });
+
+            // Re-draw "new" canvases
+            $body.find('canvas').each(function(){
+                var cid = $(this).data('printthis'),
+                    source = $('[data-printthis="' + cid + '"]')[0];
+
+                this.getContext('2d').drawImage(source, 0, 0);
             });
 
             // capture form/field values
