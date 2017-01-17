@@ -1,5 +1,5 @@
 /*
- * printThis v1.8.0
+ * printThis v1.9.0
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
@@ -28,6 +28,8 @@
  *      footer: null,               * postfix to html
  *      base: false,                * preserve the BASE tag, or accept a string for the URL
  *      formValues: true            * preserve input/form values
+ *      canvas: false               * copy canvas elements (experimental)
+ *      doctypeString: '...'        * enter a different doctype for older markup
  *  });
  *
  * Notes:
@@ -45,7 +47,7 @@
         if (window.location.hostname !== document.domain && navigator.userAgent.match(/msie/i)) {
             // Ugly IE hacks due to IE not inheriting document.domain from parent
             // checks if document.domain is set by comparing the host name against document.domain
-            var iframeSrc = "javascript:document.write(\"<head><script>document.domain=\\\"" + document.domain + "\\\";</script></head><body></body>\")";
+            var iframeSrc = "javascript:document.write(\"<head><script>document.domain=\\\"" + document.domain + "\\\";</s" + "cript></head><body></body>\")";
             var printI = document.createElement('iframe');
             printI.name = "printIframe";
             printI.id = strFrameName;
@@ -70,7 +72,6 @@
             left: "-600px",
             top: "-600px"
         });
-
 
         // $iframe.ready() and $iframe.load were inconsistent between browsers    
         setTimeout(function() {
@@ -140,6 +141,14 @@
             // print header
             if (opt.header) $body.append(opt.header);
 
+            if (opt.canvas) {
+                // add canvas data-ids for easy access after the cloning.
+                var canvasId = 0;
+                $element.find('canvas').each(function(){
+                    $(this).attr('data-printthis', canvasId++);
+                });
+            }
+
             // grab $.selector as container
             if (opt.printContainer) $body.append($element.outer());
 
@@ -147,6 +156,19 @@
             else $element.each(function() {
                 $body.append($(this).html());
             });
+
+            if (opt.canvas) {
+                // Re-draw new canvases by referencing the originals
+                $body.find('canvas').each(function(){
+                    var cid = $(this).data('printthis'),
+                        $src = $('[data-printthis="' + cid + '"]');
+
+                    this.getContext('2d').drawImage($src[0], 0, 0);
+
+                    // Remove the mark-up from the original
+                    $src.removeData('printthis');
+                });
+            }
 
             // capture form/field values
             if (opt.formValues) {
@@ -215,7 +237,7 @@
                     // check if the iframe was created with the ugly hack
                     // and perform another ugly hack out of neccessity
                     window.frames["printIframe"].focus();
-                    $head.append("<script>  window.print(); </script>");
+                    $head.append("<script>  window.print(); </s" + "cript>");
                 } else {
                     // proper method
                     if (document.queryCommandSupported("print")) {
@@ -252,12 +274,13 @@
         header: null,           // prefix to html
         footer: null,           // postfix to html
         formValues: true,       // preserve input/form values
+        canvas: false,          // Copy canvas content (experimental)
         base: false,            // preserve the BASE tag, or accept a string for the URL
         doctypeString: '<!DOCTYPE html>' // html doctype
     };
 
     // $.selector container
     jQuery.fn.outer = function() {
-        return $($("<div></div>").html(this.clone())).html()
+        return $($("<div></div>").html(this.clone())).html();
     }
 })(jQuery);

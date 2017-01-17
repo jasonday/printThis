@@ -1,3 +1,7 @@
+01/16/2017    Added experimental canvas copy support.
+              Added detailed descriptions of advanced options to README
+              Bumped to 1.9.0 for new feature (canvas).
+
 01/16/2017    Added footer as proposed in 2015 by @RomainGehrig
               Bumped version to 1.8.0 for new feature
               Corrected 1.7.1 changelog date to 01/15/2017
