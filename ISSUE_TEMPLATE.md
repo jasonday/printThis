@@ -4,7 +4,7 @@
 ====================================================================
 
 
-###### `[  paste your an active/demo link here  ]`  
+###### `[  paste a link to an example (demo or active link) of the issue here ]`  
 
 Your issue may be closed without active code to debug. Options include jsfiddle, jsbin, codepen, dropbox, etc. with code highlighting the specific issue you are having
 
