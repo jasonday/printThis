@@ -80,7 +80,7 @@
     function setupOldIE() {
         // Ugly IE hacks due to IE not inheriting document.domain from parent
         // checks if document.domain is set by comparing the host name against document.domain
-        var iframeSrc = 'javascript:document.write(\'<head><script>document.domain="' + document.domain + '";</script></head><body></body>\')';
+        var iframeSrc = 'javascript:document.write(\'<head><script>document.domain="' + document.domain + '";</s' + 'cript></head><body></body>\')';
         var printI = document.createElement('iframe');
 
         printI.name = "printIframe";
@@ -279,7 +279,7 @@
                     // check if the iframe was created with the ugly hack
                     // and perform another ugly hack out of necessity
                     window.frames["printIframe"].focus();
-                    $head.append("<script>  window.print(); </script>");
+                    $head.append("<script>  window.print(); </s" + "cript>");
                 } else {
                     // proper method
                     contentWindow = $iframe.get(0).contentWindow;
