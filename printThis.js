@@ -80,7 +80,7 @@
     function setupOldIE() {
         // Ugly IE hacks due to IE not inheriting document.domain from parent
         // checks if document.domain is set by comparing the host name against document.domain
-        var iframeSrc = 'javascript:document.write(\'<head><script>document.domain="' + document.domain + '";</s' + 'cript></head><body></body>\')';
+        var iframeSrc = 'javascript:document.write(\'<head><s' + 'cript>document.domain="' + document.domain + '";</s' + 'cript></head><body></body>\')';
         var printI = document.createElement('iframe');
 
         printI.name = "printIframe";
@@ -93,13 +93,19 @@
         return $(printI);
     }
 
-    function setupOldIELoadEvent($iframe, loadFunction) {
+    function setupOldIELoadEvent($iframe, loadFunction, cleanupFunction) {
         var printI = $iframe.get(0);
 
         if (printI.attachEvent){
             printI.attachEvent("onload", loadFunction);
         } else {
             printI.onload = loadFunction;
+        }
+
+        if (document.attachEvent) {
+            document.attachEvent('onmessage', cleanupFunction);
+        } else {
+            document.onmessage = cleanupFunction;
         }
     }
 
@@ -111,9 +117,11 @@
         return $iframe;
     }
 
-    function setupModernBrowserLoadEvent($iframe, loadFunction) {
+    function setupModernBrowserLoadEvent($iframe, loadFunction, cleanupFunction) {
 
         $iframe[0].addEventListener('load', loadFunction);
+
+        document.addEventListener('message', cleanupFunction);
     }
 
     function hideIframe($iframe) {
@@ -193,18 +201,24 @@
         }
     }
 
+    function getPrintHandler() {
+        // Closure Compiler shrunk version of reference/iframe-ready-print.js
+        return 'function a(){window.print();parent.postMessage("printThisDone")}"complete"===document.readyState?a():document.onreadystatechange=function(){"complete"===document.readyState&&a()};';
+    }
+
     $.fn.printThis = function(options) {
         var opt = $.extend({}, $.fn.printThis.defaults, options),
             $element = this instanceof jQuery ? this : $(this),
             isOldIE = (window.location.hostname !== document.domain && navigator.userAgent.match(/msie/i)),
             $iframe = isOldIE ? setupOldIE() : setupModernBrowser(),
-            loadedCallback = runOnce(iFrameLoaded);
+            loadedCallback = runOnce(iFrameLoaded),
+            cleanupCallback = runOnce(iFrameCleanup);
 
 
         if (isOldIE) {
-            setupOldIELoadEvent($iframe, loadedCallback);
+            setupOldIELoadEvent($iframe, loadedCallback, cleanupCallback);
         } else {
-            setupModernBrowserLoadEvent($iframe, loadedCallback);
+            setupModernBrowserLoadEvent($iframe, loadedCallback, cleanupCallback);
         }
 
         // show frame if in debug mode
@@ -272,14 +286,22 @@
                 removeInlineStyles($doc);
             }
 
+
+            // Temporarily use "old method" for all browsers to prove the postMessage logic works
+            window.frames["printIframe"].focus();
+            $head.append('<sc' + 'ript>' + getPrintHandler() + '</s' + 'cript>');
+
+            /*
             setTimeout(function() {
                 var contentWindow;
 
                 if (isOldIE) {
                     // check if the iframe was created with the ugly hack
                     // and perform another ugly hack out of necessity
+
+
                     window.frames["printIframe"].focus();
-                    $head.append("<script>  window.print(); </s" + "cript>");
+                    $head.append('<sc' + 'ript>' + getPrintHandler() + '</s' + 'cript>');
                 } else {
                     // proper method
                     contentWindow = $iframe.get(0).contentWindow;
@@ -300,7 +322,13 @@
                 }
 
             }, opt.printDelay);
+            */
+        }
 
+        function iFrameCleanup() {
+            if (!opt.debug) {
+                $iframe.remove();
+            }
         }
 
     };
