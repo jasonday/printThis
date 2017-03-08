@@ -1,3 +1,6 @@
+03/07/2017    Added clone action for header or footer jQuery objects to prevent originals being removed.
+              Bumped to 1.9.1
+
 01/16/2017    Added experimental canvas copy support.
               Added detailed descriptions of advanced options to README
               Bumped to 1.9.0 for new feature (canvas).

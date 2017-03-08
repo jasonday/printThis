@@ -1,5 +1,5 @@
 /*
- * printThis v1.9.0
+ * printThis v1.9.1
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
@@ -86,8 +86,16 @@
                 doc.write(doctype);
                 doc.close();
             }
+
             if(opt.doctypeString){
                 setDocType($iframe,opt.doctypeString);
+            }
+
+            function appendContent($el, content) {
+                if (!content) return;
+
+                // Simple test for a jQuery element
+                $el.append(content.jquery ? content.clone() : content);
             }
 
             var $doc = $iframe.contents(),
@@ -139,7 +147,7 @@
             }
 
             // print header
-            if (opt.header) $body.append(opt.header);
+            appendContent($body, opt.header);
 
             if (opt.canvas) {
                 // add canvas data-ids for easy access after the cloning.
@@ -230,7 +238,7 @@
             }
 
             // print "footer"
-            if (opt.footer) $body.append(opt.footer);
+            appendContent($body, opt.footer);
 
             setTimeout(function() {
                 if ($iframe.hasClass("MSIE")) {

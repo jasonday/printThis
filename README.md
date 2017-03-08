@@ -49,7 +49,7 @@ The amount of time to wait before calling `print()` in the printThis iframe. Def
 Appropriate values depend heavily on the content and network performance. Graphics heavy, slow, or uncached content may need extra time to load.
 
 #### header & footer
-A string or jQuery object to prepend or append to the printThis iframe content. `null` by default. 
+A string or jQuery object to prepend or append to the printThis iframe content. `null` by default.
 
 ```javascript
 $('#mySelector').printThis({
@@ -60,6 +60,8 @@ $('#mySelector').printThis({
     footer: $('.hidden-print-header-content')
 });
 ```
+
+As of 1.9.1, jQuery objects will be cloned rather than moved.
 
 #### base
 The `base` option allows several behaviors.
