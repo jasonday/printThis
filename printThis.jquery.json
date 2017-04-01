@@ -10,7 +10,7 @@
   },
   "licenses": [
     {
-      "type": "GPL",
+      "type": "MIT",
       "url": "https://github.com/jasonday/printThis"
     }
   ],
