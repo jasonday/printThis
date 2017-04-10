@@ -1,3 +1,8 @@
+04/06/2017    Added action, disabled by default, to avoid bringing unwanted scripts into the print iframe.
+              Removed undocumented helper function $.fn.outer.
+              Reformatted example text with valid JS comments
+              Bumped to 1.10.0 for new feature (removeScripts)
+
 03/07/2017    Added clone action for header or footer jQuery objects to prevent originals being removed.
               Bumped to 1.9.1
 

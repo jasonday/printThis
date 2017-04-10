@@ -1,5 +1,5 @@
 /*
- * printThis v1.9.1
+ * printThis v1.10.0
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
@@ -16,20 +16,21 @@
  * Usage:
  *
  *  $("#mySelector").printThis({
- *      debug: false,               * show the iframe for debugging
- *      importCSS: true,            * import page CSS
- *      importStyle: false,         * import style tags
- *      printContainer: true,       * grab outer container as well as the contents of the selector
- *      loadCSS: "path/to/my.css",  * path to additional css file - us an array [] for multiple
- *      pageTitle: "",              * add title to print page
- *      removeInline: false,        * remove all inline styles from print elements
- *      printDelay: 333,            * variable print delay
- *      header: null,               * prefix to html
- *      footer: null,               * postfix to html
- *      base: false,                * preserve the BASE tag, or accept a string for the URL
- *      formValues: true            * preserve input/form values
- *      canvas: false               * copy canvas elements (experimental)
- *      doctypeString: '...'        * enter a different doctype for older markup
+ *      debug: false,               // show the iframe for debugging
+ *      importCSS: true,            // import page CSS
+ *      importStyle: false,         // import style tags
+ *      printContainer: true,       // grab outer container as well as the contents of the selector
+ *      loadCSS: "path/to/my.css",  // path to additional css file - us an array [] for multiple
+ *      pageTitle: "",              // add title to print page
+ *      removeInline: false,        // remove all inline styles from print elements
+ *      printDelay: 333,            // variable print delay
+ *      header: null,               // prefix to html
+ *      footer: null,               // postfix to html
+ *      base: false,                // preserve the BASE tag, or accept a string for the URL
+ *      formValues: true,           // preserve input/form values
+ *      canvas: false,              // copy canvas elements (experimental)
+ *      doctypeString: '...',       // enter a different doctype for older markup
+ *      removeScripts: false        // remove script tags from print content
  *  });
  *
  * Notes:
@@ -37,6 +38,33 @@
  */
 ;
 (function($) {
+
+    function appendContent($el, content) {
+        if (!content) return;
+
+        // Simple test for a jQuery element
+        $el.append(content.jquery ? content.clone() : content);
+    }
+
+    function appendBody($body, $element, opt) {
+        // Clone for safety and convenience
+        var $content = $element.clone();
+
+        if (opt.removeScripts) {
+            $content.find('script').remove();
+        }
+
+        if (opt.printContainer) {
+            // grab $.selector as container
+            $body.append($("<div/>").html($content).html());
+        } else {
+            // otherwise just print interior elements of container
+            $content.each(function() {
+                $body.append($(this).html());
+            });
+        }
+    }
+
     var opt;
     $.fn.printThis = function(options) {
         opt = $.extend({}, $.fn.printThis.defaults, options);
@@ -61,7 +89,6 @@
             $frame.appendTo("body");
         }
 
-
         var $iframe = $("#" + strFrameName);
 
         // show frame if in debug mode
@@ -77,7 +104,7 @@
         setTimeout(function() {
 
             // Add doctype to fix the style difference between printing and render
-            function setDocType($iframe,doctype){
+            function setDocType($iframe, doctype){
                 var win, doc;
                 win = $iframe.get(0);
                 win = win.contentWindow || win.contentDocument || win;
@@ -87,15 +114,8 @@
                 doc.close();
             }
 
-            if(opt.doctypeString){
-                setDocType($iframe,opt.doctypeString);
-            }
-
-            function appendContent($el, content) {
-                if (!content) return;
-
-                // Simple test for a jQuery element
-                $el.append(content.jquery ? content.clone() : content);
+            if (opt.doctypeString){
+                setDocType($iframe, opt.doctypeString);
             }
 
             var $doc = $iframe.contents(),
@@ -137,7 +157,7 @@
 
             // import additional stylesheet(s)
             if (opt.loadCSS) {
-               if( $.isArray(opt.loadCSS)) {
+               if ($.isArray(opt.loadCSS)) {
                     jQuery.each(opt.loadCSS, function(index, value) {
                        $head.append("<link type='text/css' rel='stylesheet' href='" + this + "'>");
                     });
@@ -150,20 +170,14 @@
             appendContent($body, opt.header);
 
             if (opt.canvas) {
-                // add canvas data-ids for easy access after the cloning.
+                // add canvas data-ids for easy access after cloning.
                 var canvasId = 0;
                 $element.find('canvas').each(function(){
                     $(this).attr('data-printthis', canvasId++);
                 });
             }
 
-            // grab $.selector as container
-            if (opt.printContainer) $body.append($element.outer());
-
-            // otherwise just print interior elements of container
-            else $element.each(function() {
-                $body.append($(this).html());
-            });
+            appendBody($body, $element, opt);
 
             if (opt.canvas) {
                 // Re-draw new canvases by referencing the originals
@@ -173,7 +187,7 @@
 
                     this.getContext('2d').drawImage($src[0], 0, 0);
 
-                    // Remove the mark-up from the original
+                    // Remove the markup from the original
                     $src.removeData('printthis');
                 });
             }
@@ -282,13 +296,9 @@
         header: null,           // prefix to html
         footer: null,           // postfix to html
         formValues: true,       // preserve input/form values
-        canvas: false,          // Copy canvas content (experimental)
+        canvas: false,          // copy canvas content (experimental)
         base: false,            // preserve the BASE tag, or accept a string for the URL
-        doctypeString: '<!DOCTYPE html>' // html doctype
+        doctypeString: '<!DOCTYPE html>', // html doctype
+        removeScripts: false    // remove script tags before appending
     };
-
-    // $.selector container
-    jQuery.fn.outer = function() {
-        return $($("<div></div>").html(this.clone())).html();
-    }
 })(jQuery);
