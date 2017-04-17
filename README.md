@@ -1,4 +1,4 @@
-#printThis
+# printThis
 Printing plug-in for jQuery
 
 ## Features
