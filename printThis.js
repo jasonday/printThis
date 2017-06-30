@@ -36,8 +36,14 @@
  * Notes:
  *  - the loadCSS will load additional css (with or without @media print) into the iframe, adjusting layout
  */
-;
-(function($) {
+ ;(function(factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (jQuery && !jQuery.fn.printThis) {
+        factory(jQuery);
+    }
+})(function($) {
 
     function appendContent($el, content) {
         if (!content) return;
@@ -253,4 +259,4 @@
         doctypeString: '<!DOCTYPE html>', // html doctype
         removeScripts: false    // remove script tags before appending
     };
-})(jQuery);
+});
