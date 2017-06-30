@@ -67,7 +67,7 @@
         } else {
             // otherwise just print interior elements of container
             $content.each(function() {
-                $(this).appendTo($body)
+                $(this).children().appendTo($body)
             });
         }
     }
