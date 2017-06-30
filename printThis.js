@@ -36,8 +36,14 @@
  * Notes:
  *  - the loadCSS will load additional css (with or without @media print) into the iframe, adjusting layout
  */
-;
-(function($) {
+ ;(function(factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (jQuery && !jQuery.fn.printThis) {
+        factory(jQuery);
+    }
+})(function($) {
 
     function appendContent($el, content) {
         if (!content) return;
@@ -48,7 +54,8 @@
 
     function appendBody($body, $element, opt) {
         // Clone for safety and convenience
-        var $content = $element.clone();
+        // Sets clone's `withDataAndEvents` to true to copy form values.
+        var $content = $element.clone(opt.formValues);
 
         if (opt.removeScripts) {
             $content.find('script').remove();
@@ -56,11 +63,11 @@
 
         if (opt.printContainer) {
             // grab $.selector as container
-            $body.append($("<div/>").html($content).html());
+            $content.appendTo($body);
         } else {
             // otherwise just print interior elements of container
             $content.each(function() {
-                $body.append($(this).html());
+                $(this).children().appendTo($body)
             });
         }
     }
@@ -100,7 +107,7 @@
             top: "-600px"
         });
 
-        // $iframe.ready() and $iframe.load were inconsistent between browsers    
+        // $iframe.ready() and $iframe.load were inconsistent between browsers
         setTimeout(function() {
 
             // Add doctype to fix the style difference between printing and render
@@ -146,7 +153,7 @@
                     $head.append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>");
                 }
             });
-            
+
             // import style tags
             if (opt.importStyle) $("style").each(function() {
                 $(this).clone().appendTo($head);
@@ -191,55 +198,6 @@
                     $src.removeData('printthis');
                 });
             }
-
-            // capture form/field values
-            if (opt.formValues) {
-                // loop through inputs
-                var $input = $element.find('input');
-                if ($input.length) {
-                    $input.each(function() {
-                        var $this = $(this),
-                            $name = $(this).attr('name'),
-                            $checker = $this.is(':checkbox') || $this.is(':radio'),
-                            $iframeInput = $doc.find('input[name="' + $name + '"]'),
-                            $value = $this.val();
-
-                        // order matters here
-                        if (!$checker) {
-                            $iframeInput.val($value);
-                        } else if ($this.is(':checked')) {
-                            if ($this.is(':checkbox')) {
-                                $iframeInput.attr('checked', 'checked');
-                            } else if ($this.is(':radio')) {
-                                $doc.find('input[name="' + $name + '"][value="' + $value + '"]').attr('checked', 'checked');
-                            }
-                        }
-
-                    });
-                }
-
-                // loop through selects
-                var $select = $element.find('select');
-                if ($select.length) {
-                    $select.each(function() {
-                        var $this = $(this),
-                            $name = $(this).attr('name'),
-                            $value = $this.val();
-                        $doc.find('select[name="' + $name + '"]').val($value);
-                    });
-                }
-
-                // loop through textareas
-                var $textarea = $element.find('textarea');
-                if ($textarea.length) {
-                    $textarea.each(function() {
-                        var $this = $(this),
-                            $name = $(this).attr('name'),
-                            $value = $this.val();
-                        $doc.find('textarea[name="' + $name + '"]').val($value);
-                    });
-                }
-            } // end capture form/field values
 
             // remove inline styles
             if (opt.removeInline) {
@@ -301,4 +259,4 @@
         doctypeString: '<!DOCTYPE html>', // html doctype
         removeScripts: false    // remove script tags before appending
     };
-})(jQuery);
+});
