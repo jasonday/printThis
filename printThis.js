@@ -1,5 +1,5 @@
 /*
- * printThis v1.10.0
+ * printThis v1.11.0
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
@@ -30,7 +30,8 @@
  *      formValues: true,           // preserve input/form values
  *      canvas: false,              // copy canvas elements (experimental)
  *      doctypeString: '...',       // enter a different doctype for older markup
- *      removeScripts: false        // remove script tags from print content
+ *      removeScripts: false,       // remove script tags from print content
+ *      copyBodyClasses: false      // copy classes from page body tag
  *  });
  *
  * Notes:
@@ -166,6 +167,11 @@
                 }
             }
 
+            // Append classes from page body tag
+            if (opt.copyBodyClasses) {
+                $body.addClass($('body')[0].className);
+            }
+
             // print header
             appendContent($body, opt.header);
 
@@ -299,6 +305,7 @@
         canvas: false,          // copy canvas content (experimental)
         base: false,            // preserve the BASE tag, or accept a string for the URL
         doctypeString: '<!DOCTYPE html>', // html doctype
-        removeScripts: false    // remove script tags before appending
+        removeScripts: false,    // remove script tags before appending
+        copyBodyClasses: false   // copy classes from page body tag
     };
 })(jQuery);
