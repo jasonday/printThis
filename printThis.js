@@ -101,6 +101,7 @@
             top: "-600px"
         });
 
+        // $iframe.ready() and $iframe.load were inconsistent between browsers
         setTimeout(function() {
 
             // Add doctype to fix the style difference between printing and render
@@ -146,6 +147,7 @@
                     $head.append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>");
                 }
             });
+
             // import style tags
             if (opt.importStyle) $("style").each(function() {
                 $(this).clone().appendTo($head);
@@ -156,20 +158,25 @@
 
             // import additional stylesheet(s)
             if (opt.loadCSS) {
+                if ($.isArray(opt.loadCSS)) {
                     jQuery.each(opt.loadCSS, function(index, value) {
+                        $head.append("<link type='text/css' rel='stylesheet' href='" + this + "'>");
                     });
                 } else {
                     $head.append("<link type='text/css' rel='stylesheet' href='" + opt.loadCSS + "'>");
                 }
             }
 
-            // Get classes from the page's body tag
-            if (opt.copyBodyClasses) {
-                $body.addClass($('body')[0].className);
-            }
-
-            // Get classes from the page's html tag
-            if (opt.copyHTMLClasses) {
+            // copy 'root' tag classes
+            var tag = opt.copyTagClasses;
+            if (tag) {
+                tag = tag === true ? 'bh' : tag;
+                if (tag.indexOf('b') !== -1) {
+                    $body.addClass($('body')[0].className);
+                }
+                if (tag.indexOf('h') !== -1) {
+                    $doc.find('html').addClass($('html')[0].className);
+                }
             }
 
             // print header
@@ -305,8 +312,7 @@
         canvas: false,          // copy canvas content (experimental)
         base: false,            // preserve the BASE tag, or accept a string for the URL
         doctypeString: '<!DOCTYPE html>', // html doctype
-        removeScripts: false,    // remove script tags before appending
-        copyBodyClasses: false,     // copy classes from the page's body tag
-        copyHTMLClasses: false      // copy classes from the page's html tag
+        removeScripts: false,   // remove script tags before appending
+        copyTagClasses: false   // copy classes from the html & body tag
     };
 })(jQuery);
