@@ -6,7 +6,7 @@ Printing plug-in for jQuery
 * Preserve page CSS/styling
 ** or add new CSS; the world is your oyster!
 * Preserve form entries
-* **1.9.0 adds experimental canvas support**
+* **Canvas support (experimental)**
 
 ## Usage
 ### Basic
@@ -85,7 +85,12 @@ This has received only limited testing and so may not work in all browsers and s
 A doctype string to use on the printThis iframe. Defaults to the HTML5 doctype.
 
 #### removeScripts
-Deletes script tags from the content to avoid errors or unexpected behavior during print.
+Deletes script tags from the content to avoid errors or unexpected behavior during print. Disabled by default.
+
+#### copyTagClasses: false       // copy classes from the html & body tag
+Copies classes from the body and html tags into the printThis iframe. 
+Accepts `true` or test for the strings `"b"` and `"h"` for the body and html tags, respectively. 
+Disabled by default. 
 
 ### All Options
 ```javascript
@@ -104,7 +109,8 @@ $("#mySelector").printThis({
     formValues: true,           // preserve input/form values
     canvas: false,              // copy canvas elements (experimental)
     doctypeString: "...",       // enter a different doctype for older markup
-    removeScripts: false        // remove script tags from print content
+    removeScripts: false,       // remove script tags from print content
+    copyTagClasses: false       // copy classes from the html & body tag
 });
 ```
 

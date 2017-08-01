@@ -1,5 +1,10 @@
+08/01/2017    Added copyTagClasses, disabled by default, to copy body & html tag classes from the page
+              Updated README documentation for removeScripts
+              Updated README to remove old versions number from canvas support to prevent confusion
+              Bumped to 1.11.0
+
 04/06/2017    Added action, disabled by default, to avoid bringing unwanted scripts into the print iframe.
-              Removed undocumented helper function $.fn.outer.
+              Removed undocumented helper function $.fn.outer
               Reformatted example text with valid JS comments
               Bumped to 1.10.0 for new feature (removeScripts)
 
