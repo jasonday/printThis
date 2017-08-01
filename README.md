@@ -108,7 +108,8 @@ $("#mySelector").printThis({
     canvas: false,              // copy canvas elements (experimental)
     doctypeString: "...",       // enter a different doctype for older markup
     removeScripts: false,       // remove script tags from print content
-    copyBodyClasses: false      // copy classes from page body tag
+    copyBodyClasses: false,     // copy classes from the page's body tag
+    copyHTMLClasses: false      // copy classes from the page's html tag
 });
 ```
 

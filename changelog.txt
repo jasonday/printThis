@@ -1,4 +1,4 @@
-07/29/2017    Added copyBodyClasses, disabled by default, to copy classes from the parent page body tag
+07/31/2017    Added copyBodyClasses & copyHTMLClasses, disabled by default, to copy body & html tag classes of the page
               Updated README documentation for removeScripts
               Updated README to remove old versions number from canvas support to prevent confusion
               Bumped to 1.11.0

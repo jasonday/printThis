@@ -31,7 +31,8 @@
  *      canvas: false,              // copy canvas elements (experimental)
  *      doctypeString: '...',       // enter a different doctype for older markup
  *      removeScripts: false,       // remove script tags from print content
- *      copyBodyClasses: false      // copy classes from page body tag
+ *      copyBodyClasses: false,     // copy classes from the page's body tag
+ *      copyHTMLClasses: false      // copy classes from the page's html tag
  *  });
  *
  * Notes:
@@ -167,9 +168,14 @@
                 }
             }
 
-            // Append classes from page body tag
+            // Get classes from the page's body tag
             if (opt.copyBodyClasses) {
                 $body.addClass($('body')[0].className);
+            }
+
+            // Get classes from the page's html tag
+            if (opt.copyHTMLClasses) {
+                $doc.find('html').addClass($('html')[0].className);
             }
 
             // print header
@@ -306,6 +312,7 @@
         base: false,            // preserve the BASE tag, or accept a string for the URL
         doctypeString: '<!DOCTYPE html>', // html doctype
         removeScripts: false,    // remove script tags before appending
-        copyBodyClasses: false   // copy classes from page body tag
+        copyBodyClasses: false,     // copy classes from the page's body tag
+        copyHTMLClasses: false      // copy classes from the page's html tag
     };
 })(jQuery);
