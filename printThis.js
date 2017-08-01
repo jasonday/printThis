@@ -31,8 +31,7 @@
  *      canvas: false,              // copy canvas elements (experimental)
  *      doctypeString: '...',       // enter a different doctype for older markup
  *      removeScripts: false,       // remove script tags from print content
- *      copyBodyClasses: false,     // copy classes from the page's body tag
- *      copyHTMLClasses: false      // copy classes from the page's html tag
+ *      copyTagClasses: false       // copy classes from the html & body tag
  *  });
  *
  * Notes:
@@ -102,7 +101,6 @@
             top: "-600px"
         });
 
-        // $iframe.ready() and $iframe.load were inconsistent between browsers    
         setTimeout(function() {
 
             // Add doctype to fix the style difference between printing and render
@@ -148,7 +146,6 @@
                     $head.append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>");
                 }
             });
-            
             // import style tags
             if (opt.importStyle) $("style").each(function() {
                 $(this).clone().appendTo($head);
@@ -159,9 +156,7 @@
 
             // import additional stylesheet(s)
             if (opt.loadCSS) {
-               if ($.isArray(opt.loadCSS)) {
                     jQuery.each(opt.loadCSS, function(index, value) {
-                       $head.append("<link type='text/css' rel='stylesheet' href='" + this + "'>");
                     });
                 } else {
                     $head.append("<link type='text/css' rel='stylesheet' href='" + opt.loadCSS + "'>");
@@ -175,7 +170,6 @@
 
             // Get classes from the page's html tag
             if (opt.copyHTMLClasses) {
-                $doc.find('html').addClass($('html')[0].className);
             }
 
             // print header

@@ -87,8 +87,10 @@ A doctype string to use on the printThis iframe. Defaults to the HTML5 doctype.
 #### removeScripts
 Deletes script tags from the content to avoid errors or unexpected behavior during print. Disabled by default.
 
-#### copyBodyClasses
-Copies classes from the body tag into the printThis iframe. Disabled by default.
+#### copyTagClasses: false       // copy classes from the html & body tag
+Copies classes from the body and html tags into the printThis iframe. 
+Accepts `true` or test for the strings `"b"` and `"h"` for the body and html tags, respectively. 
+Disabled by default. 
 
 ### All Options
 ```javascript
@@ -108,8 +110,7 @@ $("#mySelector").printThis({
     canvas: false,              // copy canvas elements (experimental)
     doctypeString: "...",       // enter a different doctype for older markup
     removeScripts: false,       // remove script tags from print content
-    copyBodyClasses: false,     // copy classes from the page's body tag
-    copyHTMLClasses: false      // copy classes from the page's html tag
+    copyTagClasses: false       // copy classes from the html & body tag
 });
 ```
 
