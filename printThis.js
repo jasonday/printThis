@@ -212,7 +212,7 @@
                 if ($input.length) {
                     $input.each(function() {
                         var $this = $(this),
-                            $name = $(this).attr('name'),
+                            $name = $this.attr('name'),
                             $checker = $this.is(':checkbox') || $this.is(':radio'),
                             $iframeInput = $doc.find('input[name="' + $name + '"]'),
                             $value = $this.val();
@@ -236,7 +236,7 @@
                 if ($select.length) {
                     $select.each(function() {
                         var $this = $(this),
-                            $name = $(this).attr('name'),
+                            $name = $this.attr('name'),
                             $value = $this.val();
                         $doc.find('select[name="' + $name + '"]').val($value);
                     });
