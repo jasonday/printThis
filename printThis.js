@@ -49,7 +49,14 @@
 
     function appendBody($body, $element, opt) {
         // Clone for safety and convenience
-        var $content = $element.clone();
+        // Calls clone(withDataAndEvents = true) to copy form values.
+        var $content = $element.clone(opt.formValues);
+
+        if (opt.formValues) {
+            // Copy original select and textarea values to their cloned counterpart
+            // Makes up for inability to clone select and textarea values with clone(true)
+            copyValues($element, $content, 'select, textarea');
+        }
 
         if (opt.removeScripts) {
             $content.find('script').remove();
@@ -57,13 +64,22 @@
 
         if (opt.printContainer) {
             // grab $.selector as container
-            $body.append($("<div/>").html($content).html());
+            $content.appendTo($body);
         } else {
             // otherwise just print interior elements of container
             $content.each(function() {
-                $body.append($(this).html());
+                $(this).children().appendTo($body)
             });
         }
+    }
+
+    // Copies values from origin to clone for passed in elementSelector
+    function copyValues(origin, clone, elementSelector) {
+        var $originalElements = origin.find(elementSelector);
+
+        clone.find(elementSelector).each(function(index, item) {
+            $(item).val($originalElements.eq(index).val());
+        });
     }
 
     var opt;
@@ -204,55 +220,6 @@
                     $src.removeData('printthis');
                 });
             }
-
-            // capture form/field values
-            if (opt.formValues) {
-                // loop through inputs
-                var $input = $element.find('input');
-                if ($input.length) {
-                    $input.each(function() {
-                        var $this = $(this),
-                            $name = $(this).attr('name'),
-                            $checker = $this.is(':checkbox') || $this.is(':radio'),
-                            $iframeInput = $doc.find('input[name="' + $name + '"]'),
-                            $value = $this.val();
-
-                        // order matters here
-                        if (!$checker) {
-                            $iframeInput.val($value);
-                        } else if ($this.is(':checked')) {
-                            if ($this.is(':checkbox')) {
-                                $iframeInput.attr('checked', 'checked');
-                            } else if ($this.is(':radio')) {
-                                $doc.find('input[name="' + $name + '"][value="' + $value + '"]').attr('checked', 'checked');
-                            }
-                        }
-
-                    });
-                }
-
-                // loop through selects
-                var $select = $element.find('select');
-                if ($select.length) {
-                    $select.each(function() {
-                        var $this = $(this),
-                            $name = $(this).attr('name'),
-                            $value = $this.val();
-                        $doc.find('select[name="' + $name + '"]').val($value);
-                    });
-                }
-
-                // loop through textareas
-                var $textarea = $element.find('textarea');
-                if ($textarea.length) {
-                    $textarea.each(function() {
-                        var $this = $(this),
-                            $name = $(this).attr('name'),
-                            $value = $this.val();
-                        $doc.find('textarea[name="' + $name + '"]').val($value);
-                    });
-                }
-            } // end capture form/field values
 
             // remove inline styles
             if (opt.removeInline) {

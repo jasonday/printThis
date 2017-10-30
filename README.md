@@ -57,7 +57,7 @@ A string or jQuery object to prepend or append to the printThis iframe content. 
 $('#mySelector').printThis({
     header: "<h1>Amazing header</h1>"
 });
- 
+
 $('#mySelector').printThis({
     footer: $('.hidden-print-header-content')
 });
@@ -69,15 +69,13 @@ As of 1.9.1, jQuery objects will be cloned rather than moved.
 The `base` option allows several behaviors.
 By default it is `false`, meaning a the current document will be set as the base URL.  
 
-If set to `true`, a `<base>` attribute will be set if one exists on the page. 
+If set to `true`, a `<base>` attribute will be set if one exists on the page.
 If none is found, the tag is omitted, which may be suitable for pages with Fully Qualified URLs.
 
 When passed as a string, it will be used as the `href` attribute of a `<base>` tag.
 
 #### formValues
-This setting attempts to copy the current values of form elements into the printThis iframe. On by default.
-
-Complex field values, such as those containing quotations or mark-up, may have difficulties. Please report any unexpected behavior.
+This setting copies the current values of form elements into the printThis iframe. On by default.
 
 #### canvas -- Experimental
 As of 1.9.0 you may be able to duplicate canvas elements to the printThis iframe. Disabled by default.
@@ -123,8 +121,4 @@ $("#mySelector").printThis({
 * Every user should be active in the debugging process
 
 ## ToDo:
-* Look at more efficient form field value persist
 * Look at alternative to setTimeout ($.deferred?)
-              
-
-
