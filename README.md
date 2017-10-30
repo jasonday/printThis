@@ -63,7 +63,7 @@ $('#mySelector').printThis({
 });
 ```
 
-As of 1.9.1, jQuery objects will be cloned rather than moved.
+As of 1.9.1, jQuery objects are cloned rather than moved.
 
 #### base
 The `base` option allows several behaviors.
