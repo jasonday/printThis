@@ -77,7 +77,7 @@
         var $originalElements = origin.find(elementSelector);
 
         clone.find(elementSelector).each(function(index, item) {
-            item.value = $originalElements.eq(index).val();
+            $(item).val($originalElements.eq(index).val());
         });
     }
 
