@@ -25,6 +25,14 @@ $('#kitty-one, #kitty-two, #kitty-three').printThis({
 });
 ```
 
+### Troubleshooting
+[Check the printThis wiki for common issues and questions](https://github.com/jasonday/printThis/wiki)
+
+*Covers common issues related to styling and printing limitations regarding page breaks*
+
+
+### Options
+
 #### debug
 Debug leaves the iframe visible on the page after `printThis` runs, allowing you to inspect the markup and CSS.
 
