@@ -1,7 +1,7 @@
-[![NPM](https://nodei.co/npm/print-this.png)](https://www.npmjs.com/package/print-this)
-
 # printThis
 Printing plug-in for jQuery
+
+[![NPM](https://nodei.co/npm/print-this.png)](https://www.npmjs.com/package/print-this)
 
 ## Features
 * Print specific & multiple DOM elements
