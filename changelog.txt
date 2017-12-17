@@ -1,3 +1,6 @@
+12/17/2017    Merged fix for jQuery version limit from nip3o
+              Bumped to 1.12.1
+
 10/30/2017    Merged simpler form clone from Subtletree
               Updated README to correct 1.9.1 reference to past-tense
               Bumped to 1.12.0
