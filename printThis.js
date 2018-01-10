@@ -201,7 +201,8 @@
             if (opt.canvas) {
                 // add canvas data-ids for easy access after cloning.
                 var canvasId = 0;
-                $element.find('canvas').each(function(){
+                // .addBack('canvas') adds the top-level element if it is a canvas.
+                $element.find('canvas').addBack('canvas').each(function(){
                     $(this).attr('data-printthis', canvasId++);
                 });
             }
