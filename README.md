@@ -89,6 +89,8 @@ This setting copies the current values of form elements into the printThis ifram
 As of 1.9.0 you may be able to duplicate canvas elements to the printThis iframe. Disabled by default.
 This has received only limited testing and so may not work in all browsers and situations.
 
+As of 1.12.2 you can call printThis directly on a canvas element.
+
 #### doctypeString
 A doctype string to use on the printThis iframe. Defaults to the HTML5 doctype.
 
