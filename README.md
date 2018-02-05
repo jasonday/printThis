@@ -1,8 +1,8 @@
-[![npm version](https://badge.fury.io/js/print-this.svg)](https://badge.fury.io/js/print-this)
+
+<a href="https://badge.fury.io/js/print-this"><img src="https://badge.fury.io/js/print-this.svg" alt="npm version" height="18" align="right"></a>
 
 # printThis
 Printing plug-in for jQuery
-
 #### [Try the Demo](https://jasonday.github.io/printThis/)
 
 
