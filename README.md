@@ -1,6 +1,8 @@
 # printThis
 Printing plug-in for jQuery
 
+[Try the Demo](https://jasonday.github.io/printThis/)
+
 [![NPM](https://nodei.co/npm/print-this.png)](https://www.npmjs.com/package/print-this)
 
 ## Features
@@ -9,6 +11,7 @@ Printing plug-in for jQuery
 ** or add new CSS; the world is your oyster!
 * Preserve form entries
 * **Canvas support (experimental)**
+
 
 ## Usage
 ### Basic
