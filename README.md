@@ -1,9 +1,10 @@
+
+<a href="https://badge.fury.io/js/print-this"><img src="https://badge.fury.io/js/print-this.svg" alt="npm version" height="18" align="right"></a>
+
 # printThis
 Printing plug-in for jQuery
+#### [Try the Demo](https://jasonday.github.io/printThis/)
 
-[Try the Demo](https://jasonday.github.io/printThis/)
-
-[![NPM](https://nodei.co/npm/print-this.png)](https://www.npmjs.com/package/print-this)
 
 ## Features
 * Print specific & multiple DOM elements
