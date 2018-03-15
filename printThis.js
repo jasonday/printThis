@@ -165,13 +165,9 @@
             });
 
             // import style tags
-            if (opt.importStyle) {
-                var styles = document.getElementsByTagName("STYLE");
-                $head.append(styles);
-            }
-            // if (opt.importStyle) $("style").each(function() {
-            //     $(this).clone().appendTo($head);
-            // });
+            if (opt.importStyle) $("style").each(function() {
+                $head.append(this.outerHTML);
+            });
 
             // add title of the page
             if (opt.pageTitle) $head.append("<title>" + opt.pageTitle + "</title>");
