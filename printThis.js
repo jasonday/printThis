@@ -1,5 +1,5 @@
 /*
- * printThis v1.12.2
+ * printThis v1.12.3
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
@@ -166,7 +166,7 @@
 
             // import style tags
             if (opt.importStyle) $("style").each(function() {
-                $(this).clone().appendTo($head);
+                $head.append(this.outerHTML);
             });
 
             // add title of the page
