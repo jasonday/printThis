@@ -1,5 +1,5 @@
 /*
- * printThis v1.12.2
+ * printThis v1.12.3
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
