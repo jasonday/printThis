@@ -255,6 +255,7 @@
                 if (!opt.debug) {
                     setTimeout(function() {
                         $iframe.remove();
+                        $element.trigger("complete.printThis");
                     }, 1000);
                 }
 
