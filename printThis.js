@@ -191,6 +191,9 @@
                 }
             }
 
+            // CSS VAR in html tag when dynamic apply e.g.  document.documentElement.style.setProperty("--foo", bar);
+            $doc.find('html').prop('style', $('html')[0].style.cssText)
+
             // copy 'root' tag classes
             var tag = opt.copyTagClasses;
             if (tag) {
