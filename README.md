@@ -60,7 +60,7 @@ Eliminates any inline style attributes from the content. Off by default.
 
 #### removeInlineSelector
 Eliminates custom inline style attributes from the content. Off by default. Requires removeInline to be true.
-Excepts custom jquery selectors. Default is "body *"
+Excepts custom jquery selectors. Default is "*"
 
 #### printDelay
 The amount of time to wait before calling `print()` in the printThis iframe. Defaults to 333 milliseconds.
