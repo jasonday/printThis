@@ -59,7 +59,7 @@ Use a custom page title on the iframe. This may be reflected on the printed page
 Eliminates any inline style attributes from the content. Off by default.
 
 #### removeInlineSelector
-Eliminates custom inline style attributes from the content. Off by default. Requires removeInline to be true
+Eliminates custom inline style attributes from the content. Off by default. Requires removeInline to be true.
 Excepts custom jquery selectors. Default is "body *"
 
 #### printDelay
