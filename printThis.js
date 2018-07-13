@@ -227,9 +227,9 @@
             if (opt.removeInline) {
                 // $.removeAttr available jQuery 1.7+
                 if ($.isFunction($.removeAttr)) {
-                    $doc.find(opt.removeInlineSelector).removeAttr("style");
+                    $body.find(opt.removeInlineSelector).removeAttr("style");
                 } else {
-                    $doc.find(opt.removeInlineSelector).attr("style", "");
+                    $body.find(opt.removeInlineSelector).attr("style", "");
                 }
             }
 
@@ -274,7 +274,7 @@
         loadCSS: "",            // load an additional css file - load multiple stylesheets with an array []
         pageTitle: "",          // add title to print page
         removeInline: false,    // remove all inline styles
-        removeInlineSelector: "body *", // custom jquery selectors for remove selected inline styles. (removeInline = true required)
+        removeInlineSelector: "*", // custom jquery selectors for remove selected inline styles. (removeInline = true required)
         printDelay: 333,        // variable print delay
         header: null,           // prefix to html
         footer: null,           // postfix to html
