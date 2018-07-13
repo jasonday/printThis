@@ -58,6 +58,10 @@ Use a custom page title on the iframe. This may be reflected on the printed page
 #### removeInline
 Eliminates any inline style attributes from the content. Off by default.
 
+#### removeInlineSelector
+Eliminates custom inline style attributes from the content. Off by default. Requires removeInline to be true
+Excepts custom jquery selectors. Default is "body *"
+
 #### printDelay
 The amount of time to wait before calling `print()` in the printThis iframe. Defaults to 333 milliseconds.
 Appropriate values depend heavily on the content and network performance. Graphics heavy, slow, or uncached content may need extra time to load.
