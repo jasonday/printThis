@@ -33,6 +33,9 @@
  *      doctypeString: '...',       // enter a different doctype for older markup
  *      removeScripts: false,       // remove script tags from print content
  *      copyTagClasses: false       // copy classes from the html & body tag
+ *      beforePrintEvent: null,     // callback function printEvent in iframe
+ *      beforePrint: null,          // callback function will be triggered before iframe created
+ *      afterPrint: null            // callback function will be triggered before iframe removed
  *  });
  *
  * Notes:
@@ -118,6 +121,11 @@
             top: "-600px"
         });
 
+        // before print callback
+        if (typeof beforePrint === "function") {
+            beforePrint();
+        }
+
         // $iframe.ready() and $iframe.load were inconsistent between browsers
         setTimeout(function() {
 
@@ -184,6 +192,9 @@
                 }
             }
 
+            // CSS VAR in html tag when dynamic apply e.g.  document.documentElement.style.setProperty("--foo", bar);
+            $doc.find('html').prop('style', $('html')[0].style.cssText)
+
             // copy 'root' tag classes
             var tag = opt.copyTagClasses;
             if (tag) {
@@ -238,6 +249,24 @@
             // print "footer"
             appendContent($body, opt.footer);
 
+            // attach event handler function to beforePrint event
+            function attachOnBeforePrintEvent($iframe, beforePrintHandler) {
+                var win
+                win = $iframe.get(0);
+                win = win.contentWindow || win.contentDocument || win;
+
+                if (typeof beforePrintHandler === "function") {
+                    if ('matchMedia' in win) {
+                        win.matchMedia('print').addListener(function(mql) {
+                            if(mql.matches)  beforePrintHandler();
+                        });
+                    } else {
+                        win.onbeforeprint = beforePrintHandler;
+                    }
+                }
+            }
+            attachOnBeforePrintEvent($iframe, opt.beforePrint);
+
             setTimeout(function() {
                 if ($iframe.hasClass("MSIE")) {
                     // check if the iframe was created with the ugly hack
@@ -258,7 +287,13 @@
                 if (!opt.debug) {
                     setTimeout(function() {
                         $iframe.remove();
+
                     }, 1000);
+                }
+
+                // after print callback
+                if (typeof afterPrint === "function") {
+                    afterPrint();
                 }
 
             }, opt.printDelay);
@@ -285,6 +320,9 @@
         base: false,                // preserve the BASE tag, or accept a string for the URL
         doctypeString: '<!DOCTYPE html>', // html doctype
         removeScripts: false,   // remove script tags before appending
-        copyTagClasses: false   // copy classes from the html & body tag
+        copyTagClasses: false,  // copy classes from the html & body tag
+        beforePrintEvent: null, // callback function printEvent in iframe
+        beforePrint: null,      // callback function will be triggered before iframe created
+        afterPrint: null        // callback function will be triggered before iframe removed
     };
 })(jQuery);
