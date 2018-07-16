@@ -1,5 +1,10 @@
-07/15/2018    Add removeInlineSelector to allow filtering which inline styles are removed
-              Remove "experimental" tag from Canvas support. We're pretty stable at this point.
+07/15/2018    Merge support for print event handlers from eakkew
+              Include fix for CSS Variables (via inline styles set on HTML tag)
+              Make documentation consistent
+              Bump to 1.14.0
+
+07/15/2018    Merge removeInlineSelector to filter which inline styles are removed from kory75
+              Remove "experimental" tag from Canvas support. We're pretty stable at this point
               Bump to 1.13.0
 
 03/18/2018    Fixed importStyle
