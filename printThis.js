@@ -3,15 +3,15 @@
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
- * Resources (based on) :
- *              jPrintArea: http://plugins.jquery.com/project/jPrintArea
- *              jqPrint: https://github.com/permanenttourist/jquery.jqprint
- *              Ben Nadal: http://www.bennadel.com/blog/1591-Ask-Ben-Print-Part-Of-A-Web-Page-With-jQuery.htm
+ * Resources (based on):
+ * - jPrintArea: http://plugins.jquery.com/project/jPrintArea
+ * - jqPrint: https://github.com/permanenttourist/jquery.jqprint
+ * - Ben Nadal: http://www.bennadel.com/blog/1591-Ask-Ben-Print-Part-Of-A-Web-Page-With-jQuery.htm
  *
  * Licensed under the MIT licence:
  *              http://www.opensource.org/licenses/mit-license.php
  *
- * (c) Jason Day 2015
+ * (c) Jason Day 2015-2018
  *
  * Usage:
  *
@@ -36,7 +36,7 @@
  *  });
  *
  * Notes:
- *  - the loadCSS will load additional css (with or without @media print) into the iframe, adjusting layout
+ *  - the loadCSS will load additional CSS (with or without @media print) into the iframe, adjusting layout
  */
 ;
 (function($) {
@@ -269,22 +269,22 @@
 
     // defaults
     $.fn.printThis.defaults = {
-        debug: false,           // show the iframe for debugging
-        importCSS: true,        // import parent page css
-        importStyle: false,     // import style tags
-        printContainer: true,   // print outer container/$.selector
-        loadCSS: "",            // load an additional css file - load multiple stylesheets with an array []
-        pageTitle: "",          // add title to print page
-        removeInline: false,    // remove all inline styles
-        removeInlineSelector: "*", // custom jquery selectors for remove selected inline styles. (removeInline = true required)
-        printDelay: 333,        // variable print delay
-        header: null,           // prefix to html
-        footer: null,           // postfix to html
-        formValues: true,       // preserve input/form values
-        canvas: false,          // copy canvas content (experimental)
-        base: false,            // preserve the BASE tag, or accept a string for the URL
+        debug: false,               // show the iframe for debugging
+        importCSS: true,            // import parent page css
+        importStyle: false,         // import style tags
+        printContainer: true,       // print outer container/$.selector
+        loadCSS: "",                // load an additional css file - load multiple stylesheets with an array []
+        pageTitle: "",              // add title to print page
+        removeInline: false,        // remove all inline styles
+        removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+        printDelay: 333,            // variable print delay
+        header: null,               // prefix to html
+        footer: null,               // postfix to html
+        formValues: true,           // preserve input/form values
+        canvas: false,              // copy canvas content (experimental)
+        base: false,                // preserve the BASE tag, or accept a string for the URL
         doctypeString: '<!DOCTYPE html>', // html doctype
-        removeScripts: false,   // remove script tags before appending
-        copyTagClasses: false   // copy classes from the html & body tag
+        removeScripts: false,       // remove script tags before appending
+        copyTagClasses: false       // copy classes from the html & body tag
     };
 })(jQuery);
