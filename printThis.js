@@ -284,7 +284,7 @@
         canvas: false,              // copy canvas content (experimental)
         base: false,                // preserve the BASE tag, or accept a string for the URL
         doctypeString: '<!DOCTYPE html>', // html doctype
-        removeScripts: false,       // remove script tags before appending
-        copyTagClasses: false       // copy classes from the html & body tag
+        removeScripts: false,   // remove script tags before appending
+        copyTagClasses: false   // copy classes from the html & body tag
     };
 })(jQuery);
