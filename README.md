@@ -11,7 +11,7 @@ Printing plug-in for jQuery
 * Preserve page CSS/styling
 ** or add new CSS; the world is your oyster!
 * Preserve form entries
-* **Canvas support (experimental)**
+* Canvas support
 
 
 ## Usage
@@ -59,8 +59,8 @@ Use a custom page title on the iframe. This may be reflected on the printed page
 Eliminates any inline style attributes from the content. Off by default.
 
 #### removeInlineSelector
-Eliminates custom inline style attributes from the content. Off by default. Requires removeInline to be true.
-Excepts custom jquery selectors. Default is "*"
+Filter which inline style attributes to remove. Requires `removeInline` to be true.
+Accepts custom CSS/jQuery selectors. Default is `"*"`
 
 #### printDelay
 The amount of time to wait before calling `print()` in the printThis iframe. Defaults to 333 milliseconds.
@@ -120,6 +120,7 @@ $("#mySelector").printThis({
     loadCSS: "path/to/my.css",  // path to additional css file - use an array [] for multiple
     pageTitle: "",              // add title to print page
     removeInline: false,        // remove all inline styles from print elements
+    removeInlineSelector: "*",  // filter elements from which to remove inline styles
     printDelay: 333,            // variable print delay; depending on complexity a higher value may be necessary
     header: null,               // prefix to html
     footer: null,               // postfix to html

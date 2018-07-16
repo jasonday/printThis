@@ -1,3 +1,7 @@
+07/15/2018    Add removeInlineSelector to allow filtering which inline styles are removed
+              Remove "experimental" tag from Canvas support. We're pretty stable at this point.
+              Bump to 1.13.0
+
 03/18/2018    Fixed importStyle
               Bumped to 1.12.3
 

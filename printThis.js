@@ -225,11 +225,13 @@
 
             // remove inline styles
             if (opt.removeInline) {
+                // Ensure there is a selector, even if it's been mistakenly removed
+                var selector = opt.removeInlineSelector || '*';
                 // $.removeAttr available jQuery 1.7+
                 if ($.isFunction($.removeAttr)) {
-                    $body.find(opt.removeInlineSelector).removeAttr("style");
+                    $body.find(selector).removeAttr("style");
                 } else {
-                    $body.find(opt.removeInlineSelector).attr("style", "");
+                    $body.find(selector).attr("style", "");
                 }
             }
 
