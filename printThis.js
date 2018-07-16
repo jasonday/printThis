@@ -16,26 +16,26 @@
  * Usage:
  *
  *  $("#mySelector").printThis({
- *      debug: false,               // show the iframe for debugging
- *      importCSS: true,            // import page CSS
- *      importStyle: false,         // import style tags
- *      printContainer: true,       // grab outer container as well as the contents of the selector
- *      loadCSS: "path/to/my.css",  // path to additional css file - us an array [] for multiple
- *      pageTitle: "",              // add title to print page
- *      removeInline: false,        // remove all inline styles from print elements
- *      removeInlineSelector: "body *", //  custom jquery selectors for remove selected inline styles. (removeInline = true required)
- *      printDelay: 333,            // variable print delay
- *      header: null,               // prefix to html
- *      footer: null,               // postfix to html
- *      base: false,                // preserve the BASE tag, or accept a string for the URL
- *      formValues: true,           // preserve input/form values
- *      canvas: false,              // copy canvas elements (experimental)
- *      doctypeString: '...',       // enter a different doctype for older markup
- *      removeScripts: false,       // remove script tags from print content
- *      copyTagClasses: false       // copy classes from the html & body tag
- *      beforePrintEvent: null,     // callback function printEvent in iframe
- *      beforePrint: null,          // callback function will be triggered before iframe created
- *      afterPrint: null            // callback function will be triggered before iframe removed
+ *      debug: false,                   // show the iframe for debugging
+ *      importCSS: true,                // import parent page css
+ *      importStyle: false,             // import style tags
+ *      printContainer: true,           // grab outer container as well as the contents of the selector
+ *      loadCSS: "path/to/my.css",      // path to additional css file - use an array [] for multiple
+ *      pageTitle: "",                  // add title to print page
+ *      removeInline: false,            // remove all inline styles from print elements
+ *      removeInlineSelector: "body *", // custom selectors to filter inline styles. removeInline must be true
+ *      printDelay: 333,                // variable print delay
+ *      header: null,                   // prefix to html
+ *      footer: null,                   // postfix to html
+ *      base: false,                    // preserve the BASE tag, or accept a string for the URL
+ *      formValues: true,               // preserve input/form values
+ *      canvas: false,                  // copy canvas elements
+ *      doctypeString: '...',           // enter a different doctype for older markup
+ *      removeScripts: false,           // remove script tags from print content
+ *      copyTagClasses: false           // copy classes from the html & body tag
+ *      beforePrintEvent: null,         // callback function for printEvent in iframe
+ *      beforePrint: null,              // callback to trigger before iframe is filled
+ *      afterPrint: null                // callback to trigger before iframe is removed
  *  });
  *
  * Notes:
@@ -309,21 +309,21 @@
         importCSS: true,            // import parent page css
         importStyle: false,         // import style tags
         printContainer: true,       // print outer container/$.selector
-        loadCSS: "",                // load an additional css file - load multiple stylesheets with an array []
+        loadCSS: "",                // path to additional css file - use an array [] for multiple
         pageTitle: "",              // add title to print page
-        removeInline: false,        // remove all inline styles
+        removeInline: false,        // remove inline styles from print elements
         removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
         printDelay: 333,            // variable print delay
         header: null,               // prefix to html
         footer: null,               // postfix to html
+        base: false,                // preserve the BASE tag or accept a string for the URL
         formValues: true,           // preserve input/form values
-        canvas: false,              // copy canvas content (experimental)
-        base: false,                // preserve the BASE tag, or accept a string for the URL
-        doctypeString: '<!DOCTYPE html>', // html doctype
-        removeScripts: false,   // remove script tags before appending
-        copyTagClasses: false,  // copy classes from the html & body tag
-        beforePrintEvent: null, // callback function printEvent in iframe
-        beforePrint: null,      // callback function will be triggered before iframe created
-        afterPrint: null        // callback function will be triggered before iframe removed
+        canvas: false,              // copy canvas content
+        doctypeString: '<!DOCTYPE html>', // enter a different doctype for older markup
+        removeScripts: false,       // remove script tags from print content
+        copyTagClasses: false,      // copy classes from the html & body tag
+        beforePrintEvent: null,     // callback function for printEvent in iframe
+        beforePrint: null,          // callback to trigger before iframe is filled
+        afterPrint: null            // callback to trigger before iframe is removed
     };
 })(jQuery);
