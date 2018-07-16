@@ -192,8 +192,10 @@
                 }
             }
 
+            var pageHtml = $('html')[0];
+
             // CSS VAR in html tag when dynamic apply e.g.  document.documentElement.style.setProperty("--foo", bar);
-            $doc.find('html').prop('style', $('html')[0].style.cssText)
+            $doc.find('html').prop('style', pageHtml.style.cssText);
 
             // copy 'root' tag classes
             var tag = opt.copyTagClasses;
@@ -203,7 +205,7 @@
                     $body.addClass($('body')[0].className);
                 }
                 if (tag.indexOf('h') !== -1) {
-                    $doc.find('html').addClass($('html')[0].className);
+                    $doc.find('html').addClass(pageHtml.className);
                 }
             }
 
@@ -251,8 +253,7 @@
 
             // attach event handler function to beforePrint event
             function attachOnBeforePrintEvent($iframe, beforePrintHandler) {
-                var win
-                win = $iframe.get(0);
+                var win = $iframe.get(0);
                 win = win.contentWindow || win.contentDocument || win;
 
                 if (typeof beforePrintHandler === "function") {
