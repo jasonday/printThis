@@ -122,8 +122,8 @@
         });
 
         // before print callback
-        if (typeof beforePrint === "function") {
-            beforePrint();
+        if (typeof opt.beforePrint === "function") {
+            opt.beforePrint();
         }
 
         // $iframe.ready() and $iframe.load were inconsistent between browsers
@@ -292,8 +292,8 @@
                 }
 
                 // after print callback
-                if (typeof afterPrint === "function") {
-                    afterPrint();
+                if (typeof opt.afterPrint === "function") {
+                    opt.afterPrint();
                 }
 
             }, opt.printDelay);
