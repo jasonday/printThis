@@ -34,8 +34,8 @@
  *      removeScripts: false,           // remove script tags from print content
  *      copyTagClasses: false           // copy classes from the html & body tag
  *      beforePrintEvent: null,         // callback function for printEvent in iframe
- *      beforePrint: null,              // callback to trigger before iframe is filled
- *      afterPrint: null                // callback to trigger before iframe is removed
+ *      beforePrint: null,              // function called before iframe is filled
+ *      afterPrint: null                // function called before iframe is removed
  *  });
  *
  * Notes:
@@ -323,7 +323,7 @@
         removeScripts: false,       // remove script tags from print content
         copyTagClasses: false,      // copy classes from the html & body tag
         beforePrintEvent: null,     // callback function for printEvent in iframe
-        beforePrint: null,          // callback to trigger before iframe is filled
-        afterPrint: null            // callback to trigger before iframe is removed
+        beforePrint: null,          // function called before iframe is filled
+        afterPrint: null            // function called before iframe is removed
     };
 })(jQuery);

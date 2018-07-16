@@ -93,7 +93,7 @@ When passed as a string, it will be used as the `href` attribute of a `<base>` t
 #### formValues
 This setting copies the current values of form elements into the printThis iframe. On by default.
 
-#### canvas -- Experimental
+#### canvas
 As of 1.9.0 you may be able to duplicate canvas elements to the printThis iframe. Disabled by default.
 This has received only limited testing and so may not work in all browsers and situations.
 
@@ -105,31 +105,45 @@ A doctype string to use on the printThis iframe. Defaults to the HTML5 doctype.
 #### removeScripts
 Deletes script tags from the content to avoid errors or unexpected behavior during print. Disabled by default.
 
-#### copyTagClasses: false       // copy classes from the html & body tag
-Copies classes from the body and html tags into the printThis iframe. 
-Accepts `true` or test for the strings `"b"` and `"h"` for the body and html tags, respectively. 
+#### copyTagClasses: false
+Copies classes from the body and html tags into the printThis iframe.  
+Accepts `true` or test for the strings `"b"` and `"h"` for the body and html tags, respectively.  
 Disabled by default. 
+
+#### beforePrintEvent: null
+Function to run inside the iframe before the print occurs.  
+*This function has not been validated on all browsers.*
+
+#### beforePrint: null
+Function called before the iframe is populated with content.
+
+#### afterPrint: null
+Function called after the print and before the iframe is removed from the page.  
+This is called even if `debug: true`, which does not remove the iframe.
 
 ### All Options
 ```javascript
 $("#mySelector").printThis({
     debug: false,               // show the iframe for debugging
-    importCSS: true,            // import page CSS
+    importCSS: true,            // import parent page css
     importStyle: false,         // import style tags
-    printContainer: true,       // grab outer container as well as the contents of the selector
-    loadCSS: "path/to/my.css",  // path to additional css file - use an array [] for multiple
+    printContainer: true,       // print outer container/$.selector
+    loadCSS: "",                // path to additional css file - use an array [] for multiple
     pageTitle: "",              // add title to print page
-    removeInline: false,        // remove all inline styles from print elements
-    removeInlineSelector: "*",  // filter elements from which to remove inline styles
-    printDelay: 333,            // variable print delay; depending on complexity a higher value may be necessary
+    removeInline: false,        // remove inline styles from print elements
+    removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+    printDelay: 333,            // variable print delay
     header: null,               // prefix to html
     footer: null,               // postfix to html
-    base: false ,               // preserve the BASE tag, or accept a string for the URL
+    base: false,                // preserve the BASE tag or accept a string for the URL
     formValues: true,           // preserve input/form values
-    canvas: false,              // copy canvas elements (experimental)
-    doctypeString: "...",       // enter a different doctype for older markup
+    canvas: false,              // copy canvas content
+    doctypeString: '...',       // enter a different doctype for older markup
     removeScripts: false,       // remove script tags from print content
-    copyTagClasses: false       // copy classes from the html & body tag
+    copyTagClasses: false,      // copy classes from the html & body tag
+    beforePrintEvent: null,     // function for printEvent in iframe
+    beforePrint: null,          // function called before iframe is filled
+    afterPrint: null            // function called before iframe is removed
 });
 ```
 
