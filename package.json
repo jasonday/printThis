@@ -18,5 +18,8 @@
     "bugs": {
         "url": "https://github.com/jasonday/printThis/issues"
     },
-    "homepage": "https://github.com/jasonday/printThis#readme"
+    "homepage": "https://github.com/jasonday/printThis#readme",
+    "devDependencies": {
+        "rollup": "^0.65.0"
+    }
 }
