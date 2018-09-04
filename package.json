@@ -2,11 +2,14 @@
     "name": "print-this",
     "version": "1.14.0",
     "description": "Printing plug-in for jQuery",
-    "main": "printThis.js",
+    "main": "dist/print-this.cjs.js",
+    "module": "dist/print-this.esm.js",
+    "browser": "dist/print-this.umd.js",
     "dependencies": {
         "jquery": ">=1.11"
     },
     "scripts": {
+        "build": "rollup main.js --file bundle.js --format umd --name \"printThis\"",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -20,6 +23,8 @@
     },
     "homepage": "https://github.com/jasonday/printThis#readme",
     "devDependencies": {
-        "rollup": "^0.65.0"
+        "rollup": "^0.65.0",
+        "rollup-plugin-commonjs": "^9.1.6",
+        "rollup-plugin-node-resolve": "^3.3.0"
     }
 }
