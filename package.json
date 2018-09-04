@@ -9,7 +9,7 @@
         "jquery": ">=1.11"
     },
     "scripts": {
-        "build": "rollup main.js --file bundle.js --format umd --name \"printThis\"",
+        "build": "npx rollup -c",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
