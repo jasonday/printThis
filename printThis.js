@@ -292,7 +292,7 @@
       setTimeout(function() {
         if ($iframe.hasClass("MSIE")) {
           // check if the iframe was created with the ugly hack
-          // and perform another ugly hack out of neccessity
+          // and perform another ugly hack out of necessity
           window.frames["printIframe"].focus();
           $head.append("<script>  window.print(); </s" + "cript>");
         } else {
