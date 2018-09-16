@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {document} sourceDocument
+ * @return {{href: *, media: (*|string)}[]}
+ */
 const getLinkedStylesheets = (sourceDocument = document) => {
   return Array.from(sourceDocument.querySelectorAll("link[rel=stylesheet]"))
     .filter(el => !el.disabled)
@@ -8,9 +13,17 @@ const getLinkedStylesheets = (sourceDocument = document) => {
     }));
 };
 
+/**
+ * @param {document} sourceDocument
+ * @return {string[]}
+ */
 const getLinksAsText = (sourceDocument = document) => getLinkedStylesheets(sourceDocument)
   .map(link => `<link rel="stylesheet" href="${link.href}" media="${link.media}">`);
 
+/**
+ * @param {document} sourceDocument
+ * @return {HTMLElement[]}
+ */
 const getLinksAsTags = (sourceDocument = document) => getLinkedStylesheets(sourceDocument)
   .map(link => {
     const el = sourceDocument.createElement('link');
@@ -19,6 +32,12 @@ const getLinksAsTags = (sourceDocument = document) => getLinkedStylesheets(sourc
     return el;
   });
 
+/**
+ * @param {object} options
+ * @param {document} sourceDocument
+ * @param {document} targetDocument
+ * @return {document}
+ */
 const addStyleLinks = (options, sourceDocument, targetDocument) => {
   if (options.importCSS) {
     const head = targetDocument.getElementsByTagName('head')[0];
@@ -27,6 +46,10 @@ const addStyleLinks = (options, sourceDocument, targetDocument) => {
   return targetDocument;
 };
 
+/**
+ * @param {document} sourceDocument
+ * @return {{text: string}[]}
+ */
 const getStyleTags = (sourceDocument = document) => {
   return Array.from(sourceDocument.getElementsByTagName("style"))
     .filter(el => !el.disabled)
@@ -35,16 +58,31 @@ const getStyleTags = (sourceDocument = document) => {
     }));
 };
 
-const getStyleTagsAsText = (sourceDocument = document) => getLinkedStylesheets(sourceDocument)
+/**
+ * @param {document} sourceDocument
+ * @return {string[]}
+ */
+const getStyleTagsAsText = (sourceDocument = document) => getStyleTags(sourceDocument)
   .map(style => `<style>${style.text}</style>`);
 
-const getStyleTagsAsTags = (sourceDocument = document) => getLinkedStylesheets(sourceDocument)
+
+/**
+ * @param {document} sourceDocument
+ * @return {HTMLElement[]}
+ */
+const getStyleTagsAsTags = (sourceDocument = document) => getStyleTags(sourceDocument)
   .map(style => {
     const el = sourceDocument.createElement('style');
     el.textContent = style.text;
     return el;
   });
 
+/**
+ * @param {object} options
+ * @param {document} sourceDocument
+ * @param {document} targetDocument
+ * @return {document}
+ */
 const addStyleTags = (options, sourceDocument, targetDocument) => {
   if (options.importStyle) {
     const head = targetDocument.getElementsByTagName('head')[0];
@@ -53,26 +91,60 @@ const addStyleTags = (options, sourceDocument, targetDocument) => {
   return targetDocument;
 };
 
-//
-// // add title of the page
-// if (opt.pageTitle) $head.append("<title>" + opt.pageTitle + "</title>");
-//
-// // import additional stylesheet(s)
-// if (opt.loadCSS) {
-//   if ($.isArray(opt.loadCSS)) {
-//     jQuery.each(opt.loadCSS, function() {
-//       $head.append(
-//         "<link type='text/css' rel='stylesheet' href='" + this + "'>"
-//       );
-//     });
-//   } else {
-//     $head.append(
-//       "<link type='text/css' rel='stylesheet' href='" + opt.loadCSS + "'>"
-//     );
-//   }
-// }
-//
-// var pageHtml = $("html")[0];
-//
-// // CSS VAR in html tag when dynamic apply e.g.  document.documentElement.style.setProperty("--foo", bar);
-// $doc.find("html").prop("style", pageHtml.style.cssText);
+/**
+ * Makes an HTML <link> tag for the provided CSS url
+ * @param {string} url
+ * @return {HTMLElement}
+ */
+const makeLinkTag = (url) => {
+  const link = document.createElement('link');
+  link.rel="stylesheet";
+  link.href = url;
+  return link;
+};
+
+/**
+ * @param {object} options
+ * @param {document} targetDocument
+ * @return {document}
+ */
+const loadCSS = (options, targetDocument) => {
+  if (options.loadCSS) {
+    const head = targetDocument.getElementsByTagName('head')[0];
+    const urls = Array.isArray(options.loadCSS) ? options.loadCSS : [options.loadCSS];
+    urls.map(makeLinkTag).forEach(tag => head.appendChild(tag));
+  }
+
+  return targetDocument;
+};
+
+/**
+ * CSS variables are stored on the html tag when dynamically applied
+ * e.g.  document.documentElement.style.setProperty("--foo", bar);
+ * @param {object} options
+ * @param {document} sourceDocument
+ * @param {document} targetDocument
+ * @return {document}
+ */
+const addCssVariables = (options, sourceDocument, targetDocument) => {
+  // TODO: Add a config for this?
+  const srcCssText = targetDocument.getElementsByTagName('html')[0].style.cssText;
+  const targetHtml = targetDocument.getElementsByTagName('html')[0];
+
+  targetHtml.style.cssText = srcCssText;
+  return targetDocument;
+};
+
+export {
+  getLinkedStylesheets,
+  getLinksAsText,
+  getLinksAsTags,
+  addStyleLinks,
+  getStyleTags,
+  getStyleTagsAsText,
+  getStyleTagsAsTags,
+  addStyleTags,
+  makeLinkTag,
+  loadCSS,
+  addCssVariables,
+};
