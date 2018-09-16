@@ -29,7 +29,22 @@ const hasDSA = () => !!(document && document.querySelectorAll);
 
 const removeNode = node => node.parentNode && node.parentNode.removeChild(node);
 
+const fragmentFromString = (html) => {
+  var tmpl = document.createElement('template');
+  tmpl.innerHTML = html;
+  if (tmpl.content === undefined || tmpl.content === null){ // ie11
+    var fragment = document.createDocumentFragment();
+    var isTableEl = /^[^\S]*?<(t(?:head|body|foot|r|d|h))/i.test(html);
+    tmpl.innerHTML = isTableEl ? '<table>'+html : html;
+    var els        = isTableEl ? tmpl.querySelector(RegExp.$1).parentNode.childNodes : tmpl.childNodes;
+    while(els[0]) fragment.appendChild(els[0]);
+    return fragment;
+  }
+  return tmpl.content;
+};
+
 export {
+  fragmentFromString,
   getNodes,
   getNow,
   hasDSA,

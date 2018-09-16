@@ -1,3 +1,5 @@
+import fragmentFromString from '../utilities';
+
 /**
  *
  * @param {*} content
@@ -8,31 +10,30 @@
 const addContent = (
   content,
   targetDocument,
-  action = targetDocument.body.append.bind(targetDocument.body)
+  action = targetDocument.body.append.bind(targetDocument.body),
 ) => {
   if (content instanceof DocumentFragment) {
-    // TODO: Add DocumentFragment
+    action(content);
   } else if (content instanceof Element) {
-    // TODO: Clone and insert element
+    action(content.cloneNode(true));
   } else if (typeof content === 'string' && content !== '') {
-    // TODO: Add string as HTML
-    // https://stackoverflow.com/questions/9284117/inserting-arbitrary-html-into-a-documentfragment
-    // RangeElement supports IE11 natively.
+    action(fragmentFromString(content));
   } else if (Array.isArray(content)) {
-    // TODO: Call this function recursively with the elements of the array.
-    content.forEach(tag => addContent(options, targetDocument, tag));
+    content.forEach(tag => addContent(options, targetDocument, tag, action));
   }
 
   return targetDocument;
 };
 
 const addFooter = (options, targetDocument) => addContent(
-  options.header,
+  options.footer,
   targetDocument,
   targetDocument.body.append.bind(targetDocument.body),
 );
 
-const addContent = (options, targetDocument) => addContent(
+// TODO: prepend not supported by IE 11
+// https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/prepend
+const addHeader = (options, targetDocument) => addContent(
   options.header,
   targetDocument,
   targetDocument.body.prepend.bind(targetDocument.body),
@@ -41,5 +42,5 @@ const addContent = (options, targetDocument) => addContent(
 export {
   addContent,
   addFooter,
-  addContent,
+  addHeader,
 };
