@@ -1,5 +1,5 @@
 /*
- * printThis v1.14.0
+ * printThis v1.14.1
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
@@ -232,7 +232,13 @@
                     this.getContext('2d').drawImage($src[0], 0, 0);
 
                     // Remove the markup from the original
-                    $src.removeData('printthis');
+                    if ($.isFunction($.fn.removeAttr)) {
+                        $src.removeAttr('data-printthis');
+                    } else {
+                        $.each($src, function(i, el) {
+                            el.removeAttribute('data-printthis')
+                        });
+                    }
                 });
             }
 

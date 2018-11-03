@@ -1,3 +1,6 @@
+11/03/2018    Added fix for canvas data attribute removal from apires03
+              Bumped to 1.14.1
+
 07/15/2018    Merge support for print event handlers from eakkew
               Include fix for CSS Variables (via inline styles set on HTML tag)
               Make documentation consistent
