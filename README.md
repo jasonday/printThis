@@ -21,6 +21,8 @@ $('selector').printThis();
 ```
 
 ### Advanced Features
+
+##### Provide options for print
 ```javascript
 $('#kitty-one, #kitty-two, #kitty-three').printThis({
     importCSS: false,
@@ -28,6 +30,27 @@ $('#kitty-one, #kitty-two, #kitty-three').printThis({
     header: "<h1>Look at all of my kitties!</h1>"
 });
 ```
+
+##### Manually start the print functionality
+```javascript
+$('#kitty-one, #kitty-two, #kitty-three').printThis({
+    importCSS: false,
+    loadCSS: "",
+    header: "<h1>Look at all of my kitties!</h1>"
+}, function(doPrint, $doc) {
+    // handle image errors in the document to print
+    // ... or do what ever you want with the document already list for print
+    $doc.find('img').each(function(){
+        let img = new Image();
+        img.onerror = handleImageError;
+        img.src = $(this).attr('src');
+    });
+
+    // run the print
+    doPrint();
+});
+```
+
 
 ### Troubleshooting
 [Check the printThis wiki for common issues and questions](https://github.com/jasonday/printThis/wiki)
@@ -42,6 +65,9 @@ Debug leaves the iframe visible on the page after `printThis` runs, allowing you
 
 #### importCSS
 Copy CSS `<link>` tags to the printThis iframe. On by default.
+
+#### waitLoadCSS
+Wait for all css was loaded before start print.
 
 #### importStyle
 Copy CSS `<style>` tags to the printThis iframe. Off by default.
@@ -126,6 +152,7 @@ This is called even if `debug: true`, which does not remove the iframe.
 $("#mySelector").printThis({
     debug: false,               // show the iframe for debugging
     importCSS: true,            // import parent page css
+    waitLoadCSS: false,         // wait for all css was loaded before start print
     importStyle: false,         // import style tags
     printContainer: true,       // print outer container/$.selector
     loadCSS: "",                // path to additional css file - use an array [] for multiple
@@ -146,6 +173,19 @@ $("#mySelector").printThis({
     afterPrint: null            // function called before iframe is removed
 });
 ```
+
+### Callback
+`printThis` allow an optional function as second parameter.
+This function will be executed once the document is ready to print.
+The function receive two parameters `doPrint` and `$doc`.
+
+#### doPrint
+A function to run the print functionality manually.
+
+#### $doc
+The document ready to print.
+
+If you pass a callback, you are responsible to run the `doPrint` function to start print.
 
 ## Please read
 * "It's not working" without any details is not a valid issue and will be closed

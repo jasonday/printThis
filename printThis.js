@@ -18,6 +18,7 @@
  *  $("#mySelector").printThis({
  *      debug: false,                   // show the iframe for debugging
  *      importCSS: true,                // import parent page css
+ *      waitLoadCSS: false,             // wait for all css was loaded before start print
  *      importStyle: false,             // import style tags
  *      printContainer: true,           // grab outer container as well as the contents of the selector
  *      loadCSS: "path/to/my.css",      // path to additional css file - use an array [] for multiple
@@ -87,9 +88,10 @@
     }
 
     var opt;
-    $.fn.printThis = function(options) {
+    $.fn.printThis = function(options, callback) {
         opt = $.extend({}, $.fn.printThis.defaults, options);
         var $element = this instanceof jQuery ? this : $(this);
+        var pendingStylesheets = [];
 
         var strFrameName = "printThis-" + (new Date()).getTime();
 
@@ -150,6 +152,46 @@
                 $base = $('base'),
                 baseURL;
 
+            function addStyleSheet(href, media) {
+                // create a new stylesheet element
+                var $link = $('<link>', {
+                  rel: 'stylesheet',
+                  type: 'text/css'
+                });
+                if (media) {
+                  $link.attr('media', media);
+                }
+
+                if (opt.waitLoadCSS) {
+                    // include it in the list of pending stylesheets
+                    pendingStylesheets.push($link);
+
+                    // subscribe events to know when the stylesheet was loaded
+                    $link.on('load', stylesheetResolved($link));
+                    $link.on('error', stylesheetResolved($link));
+                }
+
+                // after events subscription we setup the href and include the link in the doc
+                $link.attr('href', href);
+                $head.append($link);
+            }
+
+            function stylesheetResolved($link) {
+                // return a callback
+                return function() {
+                    // remove the $link element from the pending stylesheets
+                    var index = pendingStylesheets.indexOf($link);
+                    if (index != -1) {
+                        pendingStylesheets.splice(index, 1);
+                    }
+
+                    // start the print functionality once all pending stylesheets was loaded
+                    if (pendingStylesheets.length === 0) {
+                        startPrint();
+                    }
+                }
+            }
+
             // add base tag to ensure elements use the parent domain
             if (opt.base === true && $base.length > 0) {
                 // take the base tag from the original page
@@ -169,7 +211,7 @@
                 var href = $(this).attr("href");
                 if (href) {
                     var media = $(this).attr("media") || "all";
-                    $head.append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>");
+                    addStyleSheet(href, media);
                 }
             });
 
@@ -185,10 +227,10 @@
             if (opt.loadCSS) {
                 if ($.isArray(opt.loadCSS)) {
                     jQuery.each(opt.loadCSS, function(index, value) {
-                        $head.append("<link type='text/css' rel='stylesheet' href='" + this + "'>");
+                        addStyleSheet(this);
                     });
                 } else {
-                    $head.append("<link type='text/css' rel='stylesheet' href='" + opt.loadCSS + "'>");
+                    addStyleSheet(opt.loadCSS);
                 }
             }
 
@@ -274,37 +316,50 @@
             }
             attachOnBeforePrintEvent($iframe, opt.beforePrint);
 
-            setTimeout(function() {
-                if ($iframe.hasClass("MSIE")) {
-                    // check if the iframe was created with the ugly hack
-                    // and perform another ugly hack out of neccessity
-                    window.frames["printIframe"].focus();
-                    $head.append("<script>  window.print(); </s" + "cript>");
-                } else {
-                    // proper method
-                    if (document.queryCommandSupported("print")) {
-                        $iframe[0].contentWindow.document.execCommand("print", false, null);
-                    } else {
-                        $iframe[0].contentWindow.focus();
-                        $iframe[0].contentWindow.print();
-                    }
-                }
-
-                // remove iframe after print
-                if (!opt.debug) {
+            function startPrint() {
+                function print() {
                     setTimeout(function() {
-                        $iframe.remove();
+                        if ($iframe.hasClass("MSIE")) {
+                            // check if the iframe was created with the ugly hack
+                            // and perform another ugly hack out of neccessity
+                            window.frames["printIframe"].focus();
+                            $head.append("<script>  window.print(); </s" + "cript>");
+                        } else {
+                            // proper method
+                            if (document.queryCommandSupported("print")) {
+                                $iframe[0].contentWindow.document.execCommand("print", false, null);
+                            } else {
+                                $iframe[0].contentWindow.focus();
+                                $iframe[0].contentWindow.print();
+                            }
+                        }
 
-                    }, 1000);
+                        // remove iframe after print
+                        if (!opt.debug) {
+                            setTimeout(function() {
+                                $iframe.remove();
+
+                            }, 1000);
+                        }
+
+                        // after print callback
+                        if (typeof opt.afterPrint === "function") {
+                            opt.afterPrint();
+                        }
+
+                    }, opt.printDelay);
                 }
 
-                // after print callback
-                if (typeof opt.afterPrint === "function") {
-                    opt.afterPrint();
+                if (callback) {
+                  callback(print, $doc);
+                } else {
+                  print();
                 }
+            }
 
-            }, opt.printDelay);
-
+            if (!opt.waitLoadCSS) {
+                startPrint();
+            }
         }, 333);
 
     };
@@ -313,6 +368,7 @@
     $.fn.printThis.defaults = {
         debug: false,               // show the iframe for debugging
         importCSS: true,            // import parent page css
+        waitLoadCSS: false,         // wait for all css was loaded before start print
         importStyle: false,         // import style tags
         printContainer: true,       // print outer container/$.selector
         loadCSS: "",                // path to additional css file - use an array [] for multiple
