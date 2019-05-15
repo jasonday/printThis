@@ -69,7 +69,7 @@ interface IPrintThisOptions {
      * preserve the BASE tag or accept a string for the URL
      * default value: false
      */
-    base?: boolean,
+    base?: boolean | string,
 
     /**
      * preserve input/form values
