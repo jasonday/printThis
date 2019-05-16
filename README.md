@@ -36,6 +36,7 @@ $('#kitty-one, #kitty-two, #kitty-three').printThis({
 
 
 ### Options
+Now with TypeScript definitions.
 
 #### debug
 Debug leaves the iframe visible on the page after `printThis` runs, allowing you to inspect the markup and CSS.

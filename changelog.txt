@@ -1,3 +1,6 @@
+05/15/2019    Added TypeScript definitions from nvirth
+              Bumped to 1.15.0
+
 11/03/2018    Added fix for canvas data attribute removal from apires03
               Bumped to 1.14.1
 
@@ -54,7 +57,7 @@
 
 11/23/2016    added new base option. Preserves the BASE tag from the parent page.
 
-11/07/2014    Fixed bug; Recent versions of Firefox are not applying the parent document domain to 
+11/07/2014    Fixed bug; Recent versions of Firefox are not applying the parent document domain to
               elements without fully qualified srcs. Added a <base>.
 
 10/25/2014    Fixed bug; <styles> being copied to print iframe were being removed from parent
