@@ -82,7 +82,7 @@
           <li>Print specific & multiple DOM elements</li>
           <li>Preserve page CSS/styling or add new CSS; the world is your oyster!</li>
           <li>Preserve form entries</li>
-          <li>Canvas support (experimental)</li>
+          <li>Canvas support</li>
           <li>
             <a href="#demos">See the demo</a>
           </li>
@@ -117,22 +117,26 @@ $('#kitty-one, #kitty-two, #kitty-three').printThis({
         <pre>
             <code>
 $("#mySelector").printThis({
-  debug: false,               // show the iframe for debugging
-  importCSS: true,            // import page CSS
-  importStyle: false,         // import style tags
-  printContainer: true,       // grab outer container as well as the contents of the selector
-  loadCSS: "path/to/my.css",  // path to additional css file - use an array [] for multiple
-  pageTitle: "",              // add title to print page
-  removeInline: false,        // remove all inline styles from print elements
-  printDelay: 333,            // variable print delay
-  header: null,               // prefix to html
-  footer: null,               // postfix to html
-  base: false ,               // preserve the BASE tag, or accept a string for the URL
-  formValues: true,           // preserve input/form values
-  canvas: false,              // copy canvas elements (experimental)
-  doctypeString: "...",       // enter a different doctype for older markup
-  removeScripts: false,       // remove script tags from print content
-  copyTagClasses: false       // copy classes from the html & body tag
+    debug: false,               // show the iframe for debugging
+    importCSS: true,            // import parent page css
+    importStyle: false,         // import style tags
+    printContainer: true,       // print outer container/$.selector
+    loadCSS: "",                // path to additional css file - use an array [] for multiple
+    pageTitle: "",              // add title to print page
+    removeInline: false,        // remove inline styles from print elements
+    removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+    printDelay: 333,            // variable print delay
+    header: null,               // prefix to html
+    footer: null,               // postfix to html
+    base: false,                // preserve the BASE tag or accept a string for the URL
+    formValues: true,           // preserve input/form values
+    canvas: false,              // copy canvas content
+    doctypeString: '...',       // enter a different doctype for older markup
+    removeScripts: false,       // remove script tags from print content
+    copyTagClasses: false,      // copy classes from the html & body tag
+    beforePrintEvent: null,     // function for printEvent in iframe
+    beforePrint: null,          // function called before iframe is filled
+    afterPrint: null            // function called before iframe is removed
 });
           </code>
           </pre>
@@ -196,8 +200,6 @@ $('#kitty-one, #kitty-two, #kitty-three').printThis({
         <p>Destroy couch as revenge. Claw drapes lick the plastic bag swat turds around the house eat and than sleep on your
           face. Mark territory pelt around the house and up and down stairs chasing phantoms. Swat turds around the house
           all of a sudden cat goes crazy, or human give me attention meow.</p>
-
-
       </div>
     </div>
   </section>
