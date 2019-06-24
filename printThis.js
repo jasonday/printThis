@@ -311,10 +311,20 @@
           }
         }
 
+        // remove iframe after print
+        if (!opt.debug && !opt.keepIframe) {
+          setTimeout(function() {
+            $iframe.remove();
+          }, 1000);
+        }
+
         // after print callback
         if (typeof opt.afterPrint === "function") {
+          if (opt.keepIframe) {
+            $iframe.remove();
+          }
+
           opt.afterPrint();
-          $iframe.remove();
         }
       }, opt.printDelay);
     }, 333);
@@ -341,6 +351,7 @@
     copyTagClasses: false, // copy classes from the html & body tag
     beforePrintEvent: null, // callback function for printEvent in iframe
     beforePrint: null, // function called before iframe is filled
+    keepIframe: false, // keep iframe until afterprint callback
     afterPrint: null // function called before iframe is removed
   };
 })(jQuery);
