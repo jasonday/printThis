@@ -236,7 +236,7 @@
                         $src.removeAttr('data-printthis');
                     } else {
                         $.each($src, function(i, el) {
-                            el.removeAttribute('data-printthis')
+                            el.removeAttribute('data-printthis');
                         });
                     }
                 });
