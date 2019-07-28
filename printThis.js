@@ -272,7 +272,7 @@
                     }
                 }
             }
-            attachOnBeforePrintEvent($iframe, opt.beforePrint);
+            attachOnBeforePrintEvent($iframe, opt.beforePrintEvent);
 
             setTimeout(function() {
                 if ($iframe.hasClass("MSIE")) {
