@@ -1,3 +1,6 @@
+08/04/2018    Merged beforePrintEvent fix from Uriel2015
+              Bumpt to 1.15.1
+
 05/15/2019    Added TypeScript definitions from nvirth
               Bumped to 1.15.0
 

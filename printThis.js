@@ -1,5 +1,5 @@
 /*
- * printThis v1.15.0
+ * printThis v1.15.1
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
@@ -11,7 +11,7 @@
  * Licensed under the MIT licence:
  *              http://www.opensource.org/licenses/mit-license.php
  *
- * (c) Jason Day 2015-2018
+ * (c) Jason Day 2015-2019
  *
  * Usage:
  *
