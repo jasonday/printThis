@@ -275,20 +275,10 @@
             attachOnBeforePrintEvent($iframe, opt.beforePrintEvent);
 
             setTimeout(function() {
-                if ($iframe.hasClass("MSIE")) {
-                    // check if the iframe was created with the ugly hack
-                    // and perform another ugly hack out of neccessity
-                    window.frames["printIframe"].focus();
-                    $head.append("<script>  window.print(); </s" + "cript>");
-                } else {
-                    // proper method
-                    if (document.queryCommandSupported("print")) {
-                        $iframe[0].contentWindow.document.execCommand("print", false, null);
-                    } else {
-                        $iframe[0].contentWindow.focus();
-                        $iframe[0].contentWindow.print();
-                    }
-                }
+                // check if the iframe was created with the ugly hack
+                // and perform another ugly hack out of neccessity
+                window.frames["printIframe"].focus();
+                $head.append("<script>  window.print(); </script>");
 
                 // remove iframe after print
                 if (!opt.debug) {
