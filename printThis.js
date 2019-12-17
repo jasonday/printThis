@@ -88,6 +88,9 @@
 
     var opt;
     $.fn.printThis = function(options) {
+        // removes any previous printThis iFrames
+        $("iframe[name='printIframe']").remove();
+
         opt = $.extend({}, $.fn.printThis.defaults, options);
         var $element = this instanceof jQuery ? this : $(this);
 
@@ -279,14 +282,6 @@
                 // and perform another ugly hack out of neccessity
                 window.frames["printIframe"].focus();
                 $head.append("<script>  window.print(); </script>");
-
-                // remove iframe after print
-                if (!opt.debug) {
-                    setTimeout(function() {
-                        $iframe.remove();
-
-                    }, 1000);
-                }
 
                 // after print callback
                 if (typeof opt.afterPrint === "function") {
