@@ -1,5 +1,5 @@
 /*
- * printThis v1.15.1
+ * printThis v1.16.0
  * @desc Printing plug-in for jQuery
  * @author Jason Day
  *
@@ -33,6 +33,7 @@
  *      doctypeString: '...',           // enter a different doctype for older markup
  *      removeScripts: false,           // remove script tags from print content
  *      copyTagClasses: false           // copy classes from the html & body tag
+ *      copyTagStyles: false,           // copy styles from html & body tag (for CSS Variables)
  *      beforePrintEvent: null,         // callback function for printEvent in iframe
  *      beforePrint: null,              // function called before iframe is filled
  *      afterPrint: null                // function called before iframe is removed
@@ -209,6 +210,18 @@
                 }
             }
 
+            // copy ':root' tag classes
+            tag = opt.copyTagStyles;
+            if (tag) {
+                tag = tag === true ? 'bh' : tag;
+                if (tag.indexOf('b') !== -1) {
+                    $body.attr('style', $('body')[0].style.cssText);
+                }
+                if (tag.indexOf('h') !== -1) {
+                    $doc.find('html').attr('style', pageHtml.style.cssText);
+                }
+            }
+
             // print header
             appendContent($body, opt.header);
 
@@ -328,6 +341,7 @@
         doctypeString: '<!DOCTYPE html>', // enter a different doctype for older markup
         removeScripts: false,       // remove script tags from print content
         copyTagClasses: false,      // copy classes from the html & body tag
+        copyTagStyles: false,       // copy styles from html & body tag (for CSS Variables)
         beforePrintEvent: null,     // callback function for printEvent in iframe
         beforePrint: null,          // function called before iframe is filled
         afterPrint: null            // function called before iframe is removed

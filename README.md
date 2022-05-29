@@ -111,6 +111,12 @@ Copies classes from the body and html tags into the printThis iframe.
 Accepts `true` or test for the strings `"b"` and `"h"` for the body and html tags, respectively.  
 Disabled by default. 
 
+#### copyTagStyles: false
+Copies style attributes from the body and html tags into the printThis iframe.
+Added to provide support for CSS Variables.
+Accepts `true` or test for the strings `"b"` and `"h"` for the body and html tags, respectively.  
+Disabled by default. 
+
 #### beforePrintEvent: null
 Function to run inside the iframe before the print occurs.  
 *This function has not been validated on all browsers.*
@@ -142,6 +148,7 @@ $("#mySelector").printThis({
     doctypeString: '...',       // enter a different doctype for older markup
     removeScripts: false,       // remove script tags from print content
     copyTagClasses: false,      // copy classes from the html & body tag
+    copyTagStyles: false,       // copy styles from html & body tag (for CSS Variables)
     beforePrintEvent: null,     // function for printEvent in iframe
     beforePrint: null,          // function called before iframe is filled
     afterPrint: null            // function called before iframe is removed
