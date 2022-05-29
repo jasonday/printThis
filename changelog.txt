@@ -1,6 +1,9 @@
+05/29/2022    Set new defaults
+              Bumped to 2.0.0
+
 05/05/2020    Add copyTagStyles behavior proposed by eakkew
               Correct year on 1.15.1 changelog entry
-              Bump to 1.16.0
+              Bumped to 1.16.0
 
 08/04/2019    Merged beforePrintEvent fix from Uriel2015
               Bumped to 1.15.1
