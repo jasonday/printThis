@@ -1,5 +1,9 @@
-08/04/2018    Merged beforePrintEvent fix from Uriel2015
-              Bumpt to 1.15.1
+05/05/2020    Add copyTagStyles behavior proposed by eakkew
+              Correct year on 1.15.1 changelog entry
+              Bump to 1.16.0
+
+08/04/2019    Merged beforePrintEvent fix from Uriel2015
+              Bumped to 1.15.1
 
 05/15/2019    Added TypeScript definitions from nvirth
               Bumped to 1.15.0
@@ -14,7 +18,7 @@
 
 07/15/2018    Merge removeInlineSelector to filter which inline styles are removed from kory75
               Remove "experimental" tag from Canvas support. We're pretty stable at this point
-              Bump to 1.13.0
+              Bumped to 1.13.0
 
 03/18/2018    Fixed importStyle
               Bumped to 1.12.3
