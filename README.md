@@ -45,7 +45,7 @@ Debug leaves the iframe visible on the page after `printThis` runs, allowing you
 Copy CSS `<link>` tags to the printThis iframe. On by default.
 
 #### importStyle
-Copy CSS `<style>` tags to the printThis iframe. Off by default.
+Copy CSS `<style>` tags to the printThis iframe. On by default.
 
 #### printContainer
 Includes the markup of the selected container, not just its contents. On by default.
@@ -64,7 +64,7 @@ Filter which inline style attributes to remove. Requires `removeInline` to be tr
 Accepts custom CSS/jQuery selectors. Default is `"*"`
 
 #### printDelay
-The amount of time to wait before calling `print()` in the printThis iframe. Defaults to 333 milliseconds.
+The amount of time to wait before calling `print()` in the printThis iframe. Defaults to 1000 milliseconds.
 Appropriate values depend heavily on the content and network performance. Graphics heavy, slow, or uncached content may need extra time to load.
 
 #### header & footer
@@ -80,7 +80,7 @@ $('#mySelector').printThis({
 });
 ```
 
-As of 1.9.1, jQuery objects are cloned rather than moved.
+jQuery objects are cloned rather than moved.
 
 #### base
 The `base` option allows several behaviors.
@@ -95,10 +95,8 @@ When passed as a string, it will be used as the `href` attribute of a `<base>` t
 This setting copies the current values of form elements into the printThis iframe. On by default.
 
 #### canvas
-As of 1.9.0 you may be able to duplicate canvas elements to the printThis iframe. Disabled by default.
-This has received only limited testing and so may not work in all browsers and situations.
-
-As of 1.12.2 you can call printThis directly on a canvas element.
+Canvas elements will be copied to the printThis iframe 
+and you can call printThis directly on a canvas element if you choose.
 
 #### doctypeString
 A doctype string to use on the printThis iframe. Defaults to the HTML5 doctype.
@@ -106,16 +104,14 @@ A doctype string to use on the printThis iframe. Defaults to the HTML5 doctype.
 #### removeScripts
 Deletes script tags from the content to avoid errors or unexpected behavior during print. Disabled by default.
 
-#### copyTagClasses: false
+#### copyTagClasses: true
 Copies classes from the body and html tags into the printThis iframe.  
-Accepts `true` or test for the strings `"b"` and `"h"` for the body and html tags, respectively.  
-Disabled by default. 
+Accepts `true`, `"b"`, `"h"`, or `"bh"` to test for `"b"` and `"h"` for body and html tags, respectively.
 
-#### copyTagStyles: false
+#### copyTagStyles: true
 Copies style attributes from the body and html tags into the printThis iframe.
 Added to provide support for CSS Variables.
-Accepts `true` or test for the strings `"b"` and `"h"` for the body and html tags, respectively.  
-Disabled by default. 
+Accepts `true`, `"b"`, `"h"`, or `"bh"` to test for `"b"` and `"h"` for body and html tags, respectively.  
 
 #### beforePrintEvent: null
 Function to run inside the iframe before the print occurs.  
@@ -133,13 +129,13 @@ This is called even if `debug: true`, which does not remove the iframe.
 $("#mySelector").printThis({
     debug: false,               // show the iframe for debugging
     importCSS: true,            // import parent page css
-    importStyle: false,         // import style tags
+    importStyle: true,          // import style tags
     printContainer: true,       // print outer container/$.selector
     loadCSS: "",                // path to additional css file - use an array [] for multiple
     pageTitle: "",              // add title to print page
     removeInline: false,        // remove inline styles from print elements
     removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
-    printDelay: 333,            // variable print delay
+    printDelay: 1000,           // variable print delay
     header: null,               // prefix to html
     footer: null,               // postfix to html
     base: false,                // preserve the BASE tag or accept a string for the URL
@@ -147,8 +143,8 @@ $("#mySelector").printThis({
     canvas: false,              // copy canvas content
     doctypeString: '...',       // enter a different doctype for older markup
     removeScripts: false,       // remove script tags from print content
-    copyTagClasses: false,      // copy classes from the html & body tag
-    copyTagStyles: false,       // copy styles from html & body tag (for CSS Variables)
+    copyTagClasses: true,       // copy classes from the html & body tag
+    copyTagStyles: true,        // copy styles from html & body tag (for CSS Variables)
     beforePrintEvent: null,     // function for printEvent in iframe
     beforePrint: null,          // function called before iframe is filled
     afterPrint: null            // function called before iframe is removed

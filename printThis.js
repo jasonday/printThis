@@ -1,7 +1,8 @@
 /*
- * printThis v1.16.0
+ * printThis v2.0.0
  * @desc Printing plug-in for jQuery
  * @author Jason Day
+ * @author Samuel Rouse
  *
  * Resources (based on):
  * - jPrintArea: http://plugins.jquery.com/project/jPrintArea
@@ -11,29 +12,29 @@
  * Licensed under the MIT licence:
  *              http://www.opensource.org/licenses/mit-license.php
  *
- * (c) Jason Day 2015-2019
+ * (c) Jason Day 2015-2022
  *
  * Usage:
  *
  *  $("#mySelector").printThis({
  *      debug: false,                   // show the iframe for debugging
  *      importCSS: true,                // import parent page css
- *      importStyle: false,             // import style tags
+ *      importStyle: true,              // import style tags
  *      printContainer: true,           // grab outer container as well as the contents of the selector
  *      loadCSS: "path/to/my.css",      // path to additional css file - use an array [] for multiple
  *      pageTitle: "",                  // add title to print page
  *      removeInline: false,            // remove all inline styles from print elements
  *      removeInlineSelector: "body *", // custom selectors to filter inline styles. removeInline must be true
- *      printDelay: 333,                // variable print delay
+ *      printDelay: 1000,               // variable print delay
  *      header: null,                   // prefix to html
  *      footer: null,                   // postfix to html
  *      base: false,                    // preserve the BASE tag, or accept a string for the URL
  *      formValues: true,               // preserve input/form values
- *      canvas: false,                  // copy canvas elements
+ *      canvas: true,                   // copy canvas elements
  *      doctypeString: '...',           // enter a different doctype for older markup
  *      removeScripts: false,           // remove script tags from print content
- *      copyTagClasses: false           // copy classes from the html & body tag
- *      copyTagStyles: false,           // copy styles from html & body tag (for CSS Variables)
+ *      copyTagClasses: true            // copy classes from the html & body tag
+ *      copyTagStyles: true,            // copy styles from html & body tag (for CSS Variables)
  *      beforePrintEvent: null,         // callback function for printEvent in iframe
  *      beforePrint: null,              // function called before iframe is filled
  *      afterPrint: null                // function called before iframe is removed
@@ -324,26 +325,26 @@
 
     // defaults
     $.fn.printThis.defaults = {
-        debug: false,               // show the iframe for debugging
-        importCSS: true,            // import parent page css
-        importStyle: false,         // import style tags
-        printContainer: true,       // print outer container/$.selector
-        loadCSS: "",                // path to additional css file - use an array [] for multiple
-        pageTitle: "",              // add title to print page
-        removeInline: false,        // remove inline styles from print elements
-        removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
-        printDelay: 333,            // variable print delay
-        header: null,               // prefix to html
-        footer: null,               // postfix to html
-        base: false,                // preserve the BASE tag or accept a string for the URL
-        formValues: true,           // preserve input/form values
-        canvas: false,              // copy canvas content
-        doctypeString: '<!DOCTYPE html>', // enter a different doctype for older markup
-        removeScripts: false,       // remove script tags from print content
-        copyTagClasses: false,      // copy classes from the html & body tag
-        copyTagStyles: false,       // copy styles from html & body tag (for CSS Variables)
-        beforePrintEvent: null,     // callback function for printEvent in iframe
-        beforePrint: null,          // function called before iframe is filled
-        afterPrint: null            // function called before iframe is removed
+        debug: false,                       // show the iframe for debugging
+        importCSS: true,                    // import parent page css
+        importStyle: true,                  // import style tags
+        printContainer: true,               // print outer container/$.selector
+        loadCSS: "",                        // path to additional css file - use an array [] for multiple
+        pageTitle: "",                      // add title to print page
+        removeInline: false,                // remove inline styles from print elements
+        removeInlineSelector: "*",          // custom selectors to filter inline styles. removeInline must be true
+        printDelay: 1000,                   // variable print delay
+        header: null,                       // prefix to html
+        footer: null,                       // postfix to html
+        base: false,                        // preserve the BASE tag or accept a string for the URL
+        formValues: true,                   // preserve input/form values
+        canvas: true,                       // copy canvas content
+        doctypeString: '<!DOCTYPE html>',   // enter a different doctype for older markup
+        removeScripts: false,               // remove script tags from print content
+        copyTagClasses: true,               // copy classes from the html & body tag
+        copyTagStyles: true,                // copy styles from html & body tag (for CSS Variables)
+        beforePrintEvent: null,             // callback function for printEvent in iframe
+        beforePrint: null,                  // function called before iframe is filled
+        afterPrint: null                    // function called before iframe is removed
     };
 })(jQuery);
