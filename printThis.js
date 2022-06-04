@@ -90,6 +90,9 @@
 
     var opt;
     $.fn.printThis = function(options) {
+        // removes any previous printThis iFrames
+        $("iframe[name='printIframe']").remove();
+
         opt = $.extend({}, $.fn.printThis.defaults, options);
         var $element = this instanceof jQuery ? this : $(this);
 
@@ -289,28 +292,10 @@
             attachOnBeforePrintEvent($iframe, opt.beforePrintEvent);
 
             setTimeout(function() {
-                if ($iframe.hasClass("MSIE")) {
-                    // check if the iframe was created with the ugly hack
-                    // and perform another ugly hack out of neccessity
-                    window.frames["printIframe"].focus();
-                    $head.append("<script>  window.print(); </s" + "cript>");
-                } else {
-                    // proper method
-                    if (document.queryCommandSupported("print")) {
-                        $iframe[0].contentWindow.document.execCommand("print", false, null);
-                    } else {
-                        $iframe[0].contentWindow.focus();
-                        $iframe[0].contentWindow.print();
-                    }
-                }
-
-                // remove iframe after print
-                if (!opt.debug) {
-                    setTimeout(function() {
-                        $iframe.remove();
-
-                    }, 1000);
-                }
+                // check if the iframe was created with the ugly hack
+                // and perform another ugly hack out of neccessity
+                window.frames["printIframe"].focus();
+                $head.append("<script>  window.print(); </script>");
 
                 // after print callback
                 if (typeof opt.afterPrint === "function") {
