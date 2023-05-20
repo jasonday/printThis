@@ -4,7 +4,7 @@
     "description": "Printing plug-in for jQuery",
     "main": "printThis.js",
     "dependencies": {
-        "jquery": ">=1.11",
+        "jquery": ">=3.6.4",
         "opencollective-postinstall": "^2.0.2"
     },
     "scripts": {
