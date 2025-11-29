@@ -208,12 +208,15 @@
             });
 
             iframe.contentWindow.onafterprint = () => {
-                if (!settings.debug) {
-                    document.body.removeChild(iframe);
-                }
-                if (typeof settings.afterPrint === "function") {
-                    settings.afterPrint();
-                }
+                setTimeout(() => {
+                    if (!settings.debug) {
+                        document.body.removeChild(iframe);
+                    }
+                    if (typeof settings.afterPrint === "function") {
+                        settings.afterPrint();
+                    }
+
+                }, 0);
             };
         };
 
