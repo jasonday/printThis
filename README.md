@@ -2,8 +2,9 @@
 <a href="https://badge.fury.io/js/print-this"><a href="https://opencollective.com/printThis" ><img src="https://opencollective.com/printThis/all/badge.svg?label=financial+contributors" alt="Financial Contributors on Open Collective"/></a> <img src="https://badge.fury.io/js/print-this.svg" alt="npm version" height="18" align="right"></a>
 
 # printThis
-Printing plug-in for jQuery
-#### [Try the Demo](https://jasonday.github.io/printThis/)
+Printing plug-in for jQuery and vanilla JavaScript
+#### [Try the jQuery Demo](https://jasonday.github.io/printThis/)
+#### [Try the Vanilla JS Demo](index.vanilla.html)
 
 
 ## Features
@@ -14,7 +15,7 @@ Printing plug-in for jQuery
 * Canvas support
 
 
-## Usage
+## jQuery Usage
 ### Basic
 ```javascript
 $('selector').printThis();
@@ -23,6 +24,21 @@ $('selector').printThis();
 ### Advanced Features
 ```javascript
 $('#kitty-one, #kitty-two, #kitty-three').printThis({
+    importCSS: false,
+    loadCSS: "",
+    header: "<h1>Look at all of my kitties!</h1>"
+});
+```
+
+## Vanilla JS Usage
+### Basic
+```javascript
+printThis('selector');
+```
+
+### Advanced Features
+```javascript
+printThis('#kitty-one, #kitty-two, #kitty-three', {
     importCSS: false,
     loadCSS: "",
     header: "<h1>Look at all of my kitties!</h1>"
