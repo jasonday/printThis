@@ -1,9 +1,10 @@
 {
     "name": "print-this",
-    "version": "3.0.0",
-    "description": "Printing plug-in in vanilla JavaScript",
+    "version": "2.0.0",
+    "description": "Printing plug-in for jQuery",
     "main": "printThis.js",
     "dependencies": {
+        "jquery": ">=1.11",
         "opencollective-postinstall": "^2.0.2"
     },
     "scripts": {
