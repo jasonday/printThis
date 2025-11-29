@@ -2,7 +2,7 @@
 <a href="https://badge.fury.io/js/print-this"><a href="https://opencollective.com/printThis" ><img src="https://opencollective.com/printThis/all/badge.svg?label=financial+contributors" alt="Financial Contributors on Open Collective"/></a> <img src="https://badge.fury.io/js/print-this.svg" alt="npm version" height="18" align="right"></a>
 
 # printThis
-Printing plug-in for vanilla JavaScript
+Printing library in vanilla JavaScript
 #### [Try the demo](https://jasonday.github.io/printThis/)
 
 > [!CAUTION]
