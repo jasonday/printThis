@@ -91,8 +91,8 @@
         <h2>Usage</h2>
         <h3>Basic</h3>
         <pre>
-              <code>printThis('selector');</code>
-            </pre>
+          <code>printThis('selector');</code>
+        </pre>
         <h3>Advanced Features</h3>
         <pre>
           <code>
@@ -116,27 +116,27 @@ printThis('#kitty-one, #kitty-two, #kitty-three', {
           <a href="https://github.com/jasonday/printThis">View on github</a> for a full description of each option</p>
         <pre>
             <code>
-              printThis("#mySelector", {
-                  debug: false,               // show the iframe for debugging
-                  importCSS: true,            // import parent page css
-                  importStyle: true,          // import style tags
-                  printContainer: true,       // print outer container
-                  loadCSS: "",                // path to additional css file - use an array [] for multiple
-                  pageTitle: "",              // add title to print page
-                  removeInline: false,        // remove inline styles from print elements
-                  removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
-                  header: null,               // prefix to html
-                  footer: null,               // postfix to html
-                  base: false,                // preserve the BASE tag or accept a string for the URL
-                  formValues: true,           // preserve input/form values
-                  canvas: false,              // copy canvas content
-                  removeScripts: false,       // remove script tags from print content
-                  copyTagClasses: true,       // copy classes from the html & body tag
-                  copyTagStyles: true,        // copy styles from html & body tag (for CSS Variables)
-                  beforePrintEvent: null,     // function for printEvent in iframe
-                  beforePrint: null,          // function called before iframe is filled
-                  afterPrint: null            // function called before iframe is removed
-              });
+printThis("#mySelector", {
+    debug: false,               // show the iframe for debugging
+    importCSS: true,            // import parent page css
+    importStyle: true,          // import style tags
+    printContainer: true,       // print outer container
+    loadCSS: "",                // path to additional css file - use an array [] for multiple
+    pageTitle: "",              // add title to print page
+    removeInline: false,        // remove inline styles from print elements
+    removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+    header: null,               // prefix to html
+    footer: null,               // postfix to html
+    base: false,                // preserve the BASE tag or accept a string for the URL
+    formValues: true,           // preserve input/form values
+    canvas: false,              // copy canvas content
+    removeScripts: false,       // remove script tags from print content
+    copyTagClasses: true,       // copy classes from the html & body tag
+    copyTagStyles: true,        // copy styles from html & body tag (for CSS Variables)
+    beforePrintEvent: null,     // function for printEvent in iframe
+    beforePrint: null,          // function called before iframe is filled
+    afterPrint: null            // function called before iframe is removed
+});
           </code>
           </pre>
 
