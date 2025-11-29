@@ -1,6 +1,6 @@
 {
   "name": "printThis",
-  "description": "Printing plug-in for jQuery",
+  "description": "Printing library",
   "main": "printThis.js",
   "authors": [
     "Jason Day"
@@ -8,7 +8,7 @@
   "license": "MIT",
   "keywords": [
     "print",
-    "jQuery"
+    "printing"
   ],
   "homepage": "https://github.com/jasonday/printThis",
   "moduleType": [],

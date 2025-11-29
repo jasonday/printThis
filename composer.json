@@ -1,9 +1,9 @@
 {
     "name": "jasonday/print-this",
-    "description": "Printing plug-in for jQuery",
+    "description": "Printing library in javascript for printing specific parts of a page",
+    "version": "3.0.0",
     "type": "library",
     "require": {
-        "components/jquery": ">=1.11"
     },
     "license": "MIT",
     "authors": [

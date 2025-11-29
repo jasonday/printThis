@@ -2,9 +2,11 @@
 <a href="https://badge.fury.io/js/print-this"><a href="https://opencollective.com/printThis" ><img src="https://opencollective.com/printThis/all/badge.svg?label=financial+contributors" alt="Financial Contributors on Open Collective"/></a> <img src="https://badge.fury.io/js/print-this.svg" alt="npm version" height="18" align="right"></a>
 
 # printThis
-Printing plug-in for jQuery and vanilla JavaScript
-#### [Try the jQuery Demo](https://jasonday.github.io/printThis/)
-#### [Try the Vanilla JS Demo](index.vanilla.html)
+Printing plug-in for vanilla JavaScript
+#### [Try the demo](https://jasonday.github.io/printThis/)
+
+> [!CAUTION]
+> printThis 3.0 drops the jQuery dependency. Initiating the library utilizes new syntax, although the options remain the same.
 
 
 ## Features
@@ -15,22 +17,7 @@ Printing plug-in for jQuery and vanilla JavaScript
 * Canvas support
 
 
-## jQuery Usage
-### Basic
-```javascript
-$('selector').printThis();
-```
-
-### Advanced Features
-```javascript
-$('#kitty-one, #kitty-two, #kitty-three').printThis({
-    importCSS: false,
-    loadCSS: "",
-    header: "<h1>Look at all of my kitties!</h1>"
-});
-```
-
-## Vanilla JS Usage
+## Usage
 ### Basic
 ```javascript
 printThis('selector');
@@ -79,24 +66,14 @@ Eliminates any inline style attributes from the content. Off by default.
 Filter which inline style attributes to remove. Requires `removeInline` to be true.
 Accepts custom CSS/jQuery selectors. Default is `"*"`
 
-#### printDelay
-The amount of time to wait before calling `print()` in the printThis iframe. Defaults to 1000 milliseconds.
-Appropriate values depend heavily on the content and network performance. Graphics heavy, slow, or uncached content may need extra time to load.
-
 #### header & footer
-A string or jQuery object to prepend or append to the printThis iframe content. `null` by default.
+A string or object to prepend or append to the printThis iframe content. `null` by default.
 
 ```javascript
-$('#mySelector').printThis({
+printThis("#mySelector", {
     header: "<h1>Amazing header</h1>"
 });
-
-$('#mySelector').printThis({
-    footer: $('.hidden-print-header-content')
-});
 ```
-
-jQuery objects are cloned rather than moved.
 
 #### base
 The `base` option allows several behaviors.
@@ -113,9 +90,6 @@ This setting copies the current values of form elements into the printThis ifram
 #### canvas
 Canvas elements will be copied to the printThis iframe 
 and you can call printThis directly on a canvas element if you choose.
-
-#### doctypeString
-A doctype string to use on the printThis iframe. Defaults to the HTML5 doctype.
 
 #### removeScripts
 Deletes script tags from the content to avoid errors or unexpected behavior during print. Disabled by default.
@@ -142,22 +116,20 @@ This is called even if `debug: true`, which does not remove the iframe.
 
 ### All Options
 ```javascript
-$("#mySelector").printThis({
+printThis("#mySelector", {
     debug: false,               // show the iframe for debugging
     importCSS: true,            // import parent page css
     importStyle: true,          // import style tags
-    printContainer: true,       // print outer container/$.selector
+    printContainer: true,       // print outer container
     loadCSS: "",                // path to additional css file - use an array [] for multiple
     pageTitle: "",              // add title to print page
     removeInline: false,        // remove inline styles from print elements
     removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
-    printDelay: 1000,           // variable print delay
     header: null,               // prefix to html
     footer: null,               // postfix to html
     base: false,                // preserve the BASE tag or accept a string for the URL
     formValues: true,           // preserve input/form values
     canvas: false,              // copy canvas content
-    doctypeString: '...',       // enter a different doctype for older markup
     removeScripts: false,       // remove script tags from print content
     copyTagClasses: true,       // copy classes from the html & body tag
     copyTagStyles: true,        // copy styles from html & body tag (for CSS Variables)
@@ -172,9 +144,6 @@ $("#mySelector").printThis({
 * A url, or html file, is necessary to debug. Due to the complexities of printing and this plugin, an example is the best way to debug
 * When troubleshooting, set `debug: true` and inspect the iframe. Please report your findings when reporting an issue
 * Every user should be active in the debugging process
-
-## ToDo:
-* Look at alternative to setTimeout ($.deferred?)
 
 ## Contributors
 
@@ -195,13 +164,3 @@ Become a financial contributor and help us sustain our community. [[Contribute](
 
 Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/printThis/contribute)]
 
-<a href="https://opencollective.com/printThis/organization/0/website"><img src="https://opencollective.com/printThis/organization/0/avatar.svg"></a>
-<a href="https://opencollective.com/printThis/organization/1/website"><img src="https://opencollective.com/printThis/organization/1/avatar.svg"></a>
-<a href="https://opencollective.com/printThis/organization/2/website"><img src="https://opencollective.com/printThis/organization/2/avatar.svg"></a>
-<a href="https://opencollective.com/printThis/organization/3/website"><img src="https://opencollective.com/printThis/organization/3/avatar.svg"></a>
-<a href="https://opencollective.com/printThis/organization/4/website"><img src="https://opencollective.com/printThis/organization/4/avatar.svg"></a>
-<a href="https://opencollective.com/printThis/organization/5/website"><img src="https://opencollective.com/printThis/organization/5/avatar.svg"></a>
-<a href="https://opencollective.com/printThis/organization/6/website"><img src="https://opencollective.com/printThis/organization/6/avatar.svg"></a>
-<a href="https://opencollective.com/printThis/organization/7/website"><img src="https://opencollective.com/printThis/organization/7/avatar.svg"></a>
-<a href="https://opencollective.com/printThis/organization/8/website"><img src="https://opencollective.com/printThis/organization/8/avatar.svg"></a>
-<a href="https://opencollective.com/printThis/organization/9/website"><img src="https://opencollective.com/printThis/organization/9/avatar.svg"></a>
