@@ -50,12 +50,6 @@ interface IPrintThisOptions {
     removeInlineSelector?: string,
 
     /**
-     * variable print delay
-     * default value: 333
-     */
-    printDelay?: number,
-
-    /**
      * prefix to html
      */
     header?: JQuery | string,
@@ -82,12 +76,6 @@ interface IPrintThisOptions {
      * default value: false
      */
     canvas?: boolean,
-
-    /**
-     * enter a different doctype for older markup
-     * default value: '<!DOCTYPE html>'
-     */
-    doctypeString?: string,
 
     /**
      * remove script tags from print content
